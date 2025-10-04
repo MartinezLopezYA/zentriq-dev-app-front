@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
+import { Login } from './modules/auth/login/login';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [Login],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
