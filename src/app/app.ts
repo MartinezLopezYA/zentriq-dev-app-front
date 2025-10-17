@@ -8,5 +8,5 @@ import { Login } from './modules/auth/login/login';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('zentriq-dev');
+  // protected readonly title = signal('zentriq-dev');
 }

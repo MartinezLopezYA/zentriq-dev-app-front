@@ -5,10 +5,137 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary: #5F1D95;
+  --secondary: #7C4DFF;
+  --alert: #7C4DFF;
+  --info: #00C4D8;
+  --accent: #00DCF5;
+  --neutral-bor: #E2E8F0;
+  --neutral-hv: #F1F5F9;
+  --neutral-text: #1E293B;
+  --neutral-text-two: #F8FAFC;
+  --neutral-bg: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --placeholder: #6B7280;
+  --danger: #EF4444;
+  --warning: #F59E0B;
+  --success: #10B981;
+  --background: #EBEDEE;
+  --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
+}
+
+[data-theme="dark"] {
+  --primary: #8B5CF6;
+  --secondary: #7C4DFF;
+  --alert: #7C4DFF;
+  --info: #06B6D4;
+  --accent: #06B6D4;
+  --neutral-bor: #334155;
+  --neutral-hv: #334155;
+  --neutral-text: #F8FAFC;
+  --neutral-text-two: #1E293B;
+  --neutral-bg: #1E293B;
+  --card-bg: #0F172A;
+  --placeholder: #6B7280;
+  --danger: #EF4444;
+  --warning: #FBBF24;
+  --success: #34D399;
+  --background: #0F172A;
+  --slider: linear-gradient(180deg, #8B5CF6 0%, #F8FAFC 50%, #8B5CF6 100%);
+}
+
+
+$primary: var(--primary);
+$secondary: var(--secondary);
+$alert: var(--alert);
+$info: var(--info);
+$accent: var(--accent);
+$neutral: var(--neutral);
+$neutral: var(--neutral);
+$neutral: var(--neutral);
+$neutral: var(--neutral);
+$card: var(--card);
+$placeholder: var(--placeholder);
+$danger: var(--danger);
+$warning: var(--warning);
+$success: var(--success);
+$background: var(--background);
+$slider: var(--slider);
+
+.custom-slider-bg {
+  background-image: var(--slider);
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-family: 'Gotham', sans-serif;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-family: 'Flama', sans-serif;
+}
+
+label {
+  font-family: 'Gotham', sans-serif;
+}
+
 .p-main-section {
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 .p-mini {
   padding: 5px;
+}
+
+.p-mini-users {
+  padding: 2px;
+}
+
+label {
+  margin-left: .8rem;
+}
+
+input {
+  padding: .5rem .8rem;
+  background-color: var(--neutral-bor);
+  font-family: 'Flama', sans-serif;
+  font-size: .8rem;
+  font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+  padding: .6rem .8rem;
+  font-family: 'Flama', sans-serif;
+  font-size: .8rem;
+
+}
+.custom-theme {
+  padding: 0;
+  font-size: auto;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+
+button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }

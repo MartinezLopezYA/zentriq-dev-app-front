@@ -1,57 +1,72 @@
-<div class="w-[100vw] h-[100dvh] bg-[#F8FAFC] flex flex-row justify-between items-center gap-[20px] p-main-section">
-  <section class="w-[60%] h-[100%] flex flex-col justify-between items-center gap-2 p-main-section bg-gradient-to-b from-[#5F1D95] via-[#F8FAFC] to-[#5F1D95] rounded-lg">
+<div class="w-[100vw] h-[100dvh] bg-[var(--neutral-bg)] flex flex-row justify-between items-center gap-[20px] p-main-section">
+  <section class="hidden w-[60%] h-[100%] md:hidden lg:flex flex-col justify-between items-center gap-2 p-main-section custom-slider-bg rounded-lg">
     <div class="flex w-full h-fit justify-between items-center">
-      <p class="text-white font-medium">ZENTRIQ.<span class="text-[#1E293B]">DEV</span></p>
-      <div class="flex gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-        </svg>
-      </div>
+      <p class="text-white font-semibold">ZENTRIQ.<span class="text-[#1E293B]">DEV</span></p>
+      <app-theme-component></app-theme-component>
     </div>
     <div class="w-full h-full flex justify-center items-center">
-      <img src="images/Imagedevelop.svg" alt="Login Illustration" class="w-[400PX]"/>
+      <img src="/images/Imagedevelop.svg" alt="Login Illustration" class="w-[400PX]" />
     </div>
     <div class="w-full flex flex-col justify-center items-center gap-2">
-      <div class="flex justify-center items-center gap-2 bg-[#E2E8F0] p-mini rounded-2xl">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-        </svg>
+      <div class="flex justify-center items-center gap-1 bg-[var(--neutral-bg)] p-mini-users rounded-2xl">
+        <img src="/icons/Man.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Man-1.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Man-2.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Woman.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Woman-1.png" alt="Icono de usuario" class="w-[30px]" />
       </div>
       <p class="text-white">Conectamos ideas con impacto</p>
     </div>
   </section>
-  <section class="w-[40%] h-[100%] flex flex-col justify-center items-center gap-2 p-main-section bg-transparent rounded-lg border border-[#CBD5E1]">
-    <img src="images/Logo Isotipo.png" alt="Logo de Zentriq.dev" class="w-[50px]"/>
-    <h2 class="text-[#1E293B] font-bold text-2xl">Bienvenido de Vuelta</h2>
-    <p class="text-[#1E293B] text-center">En Zentriq desarrollamos soluciones digitales modernas para negocios y emprendedores.</p>
+  <section class="w-full lg:w-[40%] h-[100%] flex flex-col justify-evenly items-center gap-2 p-main-section bg-transparent rounded-lg">
+    <app-theme-component class="flex lg:hidden self-end"></app-theme-component>
+    <div class="w-full flex flex-1 flex-col justify-center items-center gap-4">
+      <div class="flex flex-col justify-center items-center gap-4">
+        @if(theme === 'light') {
+          <img src="icons/Logo Isotipo Light.png" alt="Logo de Zentriq.dev" class="w-[50px]"/>
+        }@else {
+          <img src="icons/Logo Isotipo Dark.png" alt="Logo de Zentriq.dev" class="w-[50px]"/>
+        }
+        <h2 class="text-[var(--neutral-text)] font-bold text-2xl">Bienvenido de Vuelta</h2>
+      </div>
+      <form class="w-full flex flex-col gap-8 p-main-section justify-center" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="w-full flex flex-col gap-3">
+          <div class="flex flex-col gap-1 w-full">
+            <label for="email" class="text-[var(--neutral-text)] font-bold text-1xl">Usuario</label>
+            <input type="email" id="email" name="email" formControlName="useremail"
+              placeholder="Ingrese su correo electrónico"
+              class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true"/>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="userpassword" class="text-[var(--neutral-text)] font-bold text-1xl">Contraseña</label>
+            <div class="relative">
+              <input [type]="showPassword ? 'text' : 'password'" id="userpassword" name="userpassword" formControlName="userpassword"
+              placeholder="Ingrese su contraseña"
+              class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required=""/>
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer opacity-70" (click)="togglePasswordVisibility()">
+                @if(!showPassword) {
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1E293B"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z"/></svg>
+                }@else {
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1E293Bs"><path d="m644-428-58-58q9-47-27-88t-93-32l-58-58q17-8 34.5-12t37.5-4q75 0 127.5 52.5T660-500q0 20-4 37.5T644-428Zm128 126-58-56q38-29 67.5-63.5T832-500q-50-101-143.5-160.5T480-720q-29 0-57 4t-55 12l-62-62q41-17 84-25.5t90-8.5q151 0 269 83.5T920-500q-23 59-60.5 109.5T772-302Zm20 246L624-222q-35 11-70.5 16.5T480-200q-151 0-269-83.5T40-500q21-53 53-98.5t73-81.5L56-792l56-56 736 736-56 56ZM222-624q-29 26-53 57t-41 67q50 101 143.5 160.5T480-280q20 0 39-2.5t39-5.5l-36-38q-11 3-21 4.5t-21 1.5q-75 0-127.5-52.5T300-500q0-11 1.5-21t4.5-21l-84-82Zm319 93Zm-151 75Z"/></svg>
+                }
+                </span>
+              </div>
+          </div>
+        </div>
+      <button type="submit" class="w-full bg-[var(--primary)] text-white rounded hover:bg-[var(--secondary)] transition duration-300 ease-in-out" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    </form>
+    </div>
+    <p class="hidden text-[var(--neutral-text)] lg:flex text-center">En Zentriq desarrollamos soluciones digitales modernas para
+      negocios y emprendedores.</p>
+    <div class="flex w-full lg:hidden flex-col justify-center items-center gap-2">
+      <div class="flex justify-center items-center gap-1 bg-[var(--neutral-bg)] p-mini-users rounded-2xl">
+        <img src="/icons/Man.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Man-1.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Man-2.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Woman.png" alt="Icono de usuario" class="w-[30px]" />
+        <img src="/icons/Woman-1.png" alt="Icono de usuario" class="w-[30px]" />
+      </div>
+      <p class="text-[#1E293B]">Conectamos ideas con impacto</p>
+    </div>
   </section>
 </div>
