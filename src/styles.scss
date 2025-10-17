@@ -45,7 +45,6 @@
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 }
 
-
 $primary: var(--primary);
 $secondary: var(--secondary);
 $alert: var(--alert);
@@ -67,13 +66,7 @@ $slider: var(--slider);
   background-image: var(--slider);
 }
 
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   font-weight: 600;
@@ -133,7 +126,6 @@ button {
     transform: scale(1.1);
   }
 }
-
 
 button:disabled {
   opacity: 0.6;
