@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+// Light Theme
 :root {
   --primary: #5F1D95;
   --secondary: #7C4DFF;
@@ -23,8 +24,12 @@
   --success: #10B981;
   --background: #EBEDEE;
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
+
+  --topbar-height: 65px;
+  --body-height: calc(100vh - var(--topbar-height) - 8px);
 }
 
+// Dark Theme
 [data-theme="dark"] {
   --primary: #8B5CF6;
   --secondary: #7C4DFF;
@@ -41,10 +46,11 @@
   --danger: #EF4444;
   --warning: #FBBF24;
   --success: #34D399;
-  --background: #0F172A;
+  --background: #334155;
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 }
 
+// SCSS Variables for Colors
 $primary: var(--primary);
 $secondary: var(--secondary);
 $alert: var(--alert);
@@ -61,6 +67,12 @@ $warning: var(--warning);
 $success: var(--success);
 $background: var(--background);
 $slider: var(--slider);
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
 .custom-slider-bg {
   background-image: var(--slider);
@@ -81,6 +93,22 @@ p {
 
 label {
   font-family: 'Gotham', sans-serif;
+}
+
+.text-gotham {
+  font-family: 'Gotham', sans-serif;
+}
+
+.text-flama {
+  font-family: 'Flama', sans-serif;
+}
+
+.p-section {
+  padding: 8px;
+}
+
+.px-8 {
+  padding: 0 8px;
 }
 
 .p-main-section {

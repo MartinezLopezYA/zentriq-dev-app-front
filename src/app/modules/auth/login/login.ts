@@ -8,6 +8,7 @@ const COMPONENTS = [ThemeComponet];
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, ...COMPONENTS],
   templateUrl: './login.html',
   styleUrl: './login.scss'

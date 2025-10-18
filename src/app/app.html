@@ -1,1 +1,5 @@
-<app-login></app-login>
+@if(isloggedIn()) {
+  <app-main-layout></app-main-layout>
+}@else {
+  <app-login></app-login>
+}

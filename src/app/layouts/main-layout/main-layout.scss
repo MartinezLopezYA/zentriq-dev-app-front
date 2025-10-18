@@ -1,0 +1,22 @@
+:host {
+  background-color: var(--background);
+  width: 100%;
+  display: grid;
+  column-gap: 8px;
+  grid-template-areas:
+    "topbar topbar topbar"
+    "sidebar-left content sidebar-right"
+    "footer footer footer";
+  grid-template-columns: minmax(50px, auto) 1fr minmax(50px, auto);
+  padding-bottom: 8px;
+}
+
+.content {
+  display: flex;
+  background-color: var(--card-bg);
+  grid-area: content;
+  height: var(--body-height);
+  overflow: auto;
+  padding: 8px;
+}
+
