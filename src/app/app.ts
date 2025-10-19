@@ -1,10 +1,13 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { Login } from './modules/auth/login/login';
-import { Router } from '@angular/router';
 import { MainLayout } from './layouts/main-layout/main-layout';
 import { CommonModule } from '@angular/common';
+import { AlertsComponent } from './shared/components/alerts/alerts';
+import { Auth } from './core/services/auth';
+import { Router } from '@angular/router';
+import { SpinnerComponent } from './shared/components/spinner/spinner';
 
-const COMPONENTS = [MainLayout];
+const COMPONENTS = [AlertsComponent, MainLayout, SpinnerComponent];
 
 @Component({
   selector: 'app-root',
@@ -15,21 +18,30 @@ const COMPONENTS = [MainLayout];
 })
 export class App {
 
-  isloggedIn = signal(true);
+  authStatus;
+  loading: boolean = true;
 
   constructor(
-    private router: Router,
+    public authService: Auth,
+    private router: Router
   ) {
-    effect(() => {
-      if (this.isloggedIn()) {
-        this.router.navigate(['/pages/main']);
-      } else {
+    this.authStatus = this.authService.authStatus;
+  }
+
+  ngOnInit() {
+    this.authService.initializeSession().subscribe({
+      next: (isAuthenticated) => {
+        this.loading = false;
+        if (!isAuthenticated) {
+          this.router.navigate(['/auth/login']);
+        } else {
+          this.router.navigate(['/pages/main']);
+        }
+      },
+      error: (err) => {
+        this.loading = false;
         this.router.navigate(['/auth/login']);
       }
     });
-  }
-
-  login() {
-    this.isloggedIn.set(true);
   }
 }

@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -49,24 +51,6 @@
   --background: #334155;
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 }
-
-// SCSS Variables for Colors
-$primary: var(--primary);
-$secondary: var(--secondary);
-$alert: var(--alert);
-$info: var(--info);
-$accent: var(--accent);
-$neutral: var(--neutral);
-$neutral: var(--neutral);
-$neutral: var(--neutral);
-$neutral: var(--neutral);
-$card: var(--card);
-$placeholder: var(--placeholder);
-$danger: var(--danger);
-$warning: var(--warning);
-$success: var(--success);
-$background: var(--background);
-$slider: var(--slider);
 
 html, body {
   margin: 0;
@@ -123,6 +107,14 @@ label {
   padding: 5px;
 }
 
+.p-10 {
+  padding: 10px;
+}
+
+.p-20 {
+  padding: 20px;;
+}
+
 .p-mini-users {
   padding: 2px;
 }
@@ -146,6 +138,7 @@ button {
   font-size: .8rem;
 
 }
+
 .custom-theme {
   padding: 0;
   font-size: auto;

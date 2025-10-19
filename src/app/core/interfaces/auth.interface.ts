@@ -1,3 +1,5 @@
+import { UserLoginResponseInterface, UserSessionResponseInterface } from "./user.interface";
+
 export class CredentialsInterface {
   useremail: string | null = null;
   userpassword: string | null = null;
@@ -5,5 +7,13 @@ export class CredentialsInterface {
 
 export class AuthResponseInterface {
   access_token: string | null = null;
-  user: any;
+  refresh_token: string | null = null;
+  user: UserLoginResponseInterface | null = null;
+}
+
+
+export interface UserSessionInterface {
+  sessionActive: boolean,
+  refreshToken: boolean,
+  user: UserSessionResponseInterface
 }

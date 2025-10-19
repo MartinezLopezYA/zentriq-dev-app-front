@@ -1,5 +1,10 @@
-@if(isloggedIn()) {
-  <app-main-layout></app-main-layout>
-}@else {
-  <app-login></app-login>
+<app-alerts-component></app-alerts-component>
+@if(loading) {
+  <app-spinner-component></app-spinner-component>
+} @else {
+  @if(authStatus()) {
+    <app-main-layout></app-main-layout>
+  } @else {
+    <app-login></app-login>
+  }
 }
