@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AlertInterface } from '../../interfaces/alert.interface';
+import { AlertInterface } from '../../interfaces/global/alert.interface';
 
 @Injectable({
   providedIn: 'root'

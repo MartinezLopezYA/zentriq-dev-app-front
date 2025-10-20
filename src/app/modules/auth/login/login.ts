@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Auth } from '../../../core/services/auth';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Theme } from '../../../core/services/global/theme';
-import { ThemeComponet } from '../../../shared/components/theme/theme';
+import { ThemeComponet } from '../../../shared/components/theme-component/theme-component';
 import { Alerts } from '../../../core/services/global/alerts';
 import { Router } from '@angular/router';
 import { User } from '../../../core/services/user';

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Theme } from '../../../core/services/global/theme';
 import { UserLoginResponseInterface } from '../../../core/interfaces/user.interface';
-import { Auth } from '../../../core/services/auth';
+import { User } from '../../../core/services/user';
+import { Alerts } from '../../../core/services/global/alerts';
 
 @Component({
   selector: 'app-topbar',
@@ -16,8 +17,8 @@ import { Auth } from '../../../core/services/auth';
         }
         <div class="flex items-center gap-3">
           <div class="flex flex-col justify-center items-end">
-            <span class="text-gotham font-bold text-[var(--neutral-text)]">{{ user?.firstname }} {{ user?.lastname}}</span>
-            <span class="text-flama text-sm text-[var(--neutral-text)]">{{ roles.join(', ') }}</span>
+            <span class="text-gotham font-bold text-sm text-[var(--neutral-text)]">{{ user?.firstname }} {{ user?.lastname}}</span>
+            <span class="text-flama text-xs text-[var(--neutral-text)]">{{ roles.join(', ') }}</span>
           </div>
           <img class="w-8 h-8 rounded-full object-cover" src="https://i.pravatar.cc/300" alt="User Avatar">
         </div>
@@ -40,21 +41,30 @@ export class Topbar implements OnInit {
 
   constructor(
     private themeService: Theme,
-    private authService: Auth
+    private userService: User,
+    private alertService: Alerts,
   ) { }
 
   ngOnInit(): void {
     this.themeService.theme$.subscribe((theme: 'light' | 'dark') => {
       this.theme = theme;
     });
+    this.loadUser();
+  }
 
-    // this.authService.user$.subscribe((user: UserLoginResponseInterface | null) => {
-    //   this.user = user;
-    // });
+  loadUser() {
+    this.userService.getProfile().subscribe({
+      next: (res) => {
+        this.userService._currentUser.set(res);
+        this.user = this.userService.currentUser();
+        this.roles = this.userService.currentUser()?.additionalInfo?.roles.map((role) => role.rolename) || [];
+      },
+      error: () => {
+        this.alertService.showAlert('Error al cargar el usuario.', 'error');
+      }
+      }
+    )
 
-    // this.authService.roles$.subscribe((roles: string[]) => {
-    //   this.roles = roles;
-    // });
   }
 
 }

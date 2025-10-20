@@ -1,6 +1,19 @@
 <app-alerts-component></app-alerts-component>
+<app-modal-component
+  #globalModal
+  [title]="modalOptions.title || '¿Estás seguro?'"
+  [message]="modalOptions.message || 'Esta acción no se puede revertir'"
+  [icon]="modalOptions.icon || 'pi pi-exclamation-triangle'"
+  [type]="modalOptions.type || 'info'"
+  [confirmText]="modalOptions.confirmText || 'Confirmar'"
+  [cancelText]="modalOptions.cancelText || 'Cancelar'"
+  [confirmIcon]="modalOptions.confirmIcon || 'pi pi-check-circle'"
+  [cancelIcon]="modalOptions.cancelIcon || 'pi pi-times-circle'"
+  (confirm)="handleConfirm()"
+  (cancel)="handleCancel()"
+  ></app-modal-component>
 @if(loading) {
-  <app-spinner-component></app-spinner-component>
+  <!-- <app-spinner-component></app-spinner-component> -->
 } @else {
   @if(authStatus()) {
     <app-main-layout></app-main-layout>

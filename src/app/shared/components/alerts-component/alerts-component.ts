@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Alerts } from '../../../core/services/global/alerts';
-import { AlertInterface } from '../../../core/interfaces/alert.interface';
+import { AlertInterface } from '../../../core/interfaces/global/alert.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -19,9 +19,13 @@ import { CommonModule } from '@angular/common';
               'pi-exclamation-triangle': alert.type === 'warning'
             }">
           </i>
-          <div class="w-[1px] h-[50px] border-1 border-[var(--white)]"></div>
+          <div class="w-[1px] h-[30px] border-1 border-[var(--white)]"></div>
           <div class="flex flex-col">
-            <h6 class="text-white">
+            <h6 class="{{ alert.type === 'success' ? 'text-[var(--success)]'
+              : alert.type === 'error' ? 'text-[var(--danger)]'
+              : alert.type === 'info' ? 'text-[var(--info)]'
+              : 'text-[var(--warning)]'
+            }}">
               {{
                 alert.type === 'success' ? 'Exitoso'
                 : alert.type === 'error' ? 'Error'
@@ -29,7 +33,7 @@ import { CommonModule } from '@angular/common';
                 : 'Advertencia'
               }}
             </h6>
-            <p class="text-white">{{ alert.message }}</p>
+            <p class="text-[var(--neutral-text)]">{{ alert.message }}</p>
           </div>
         </div>
       }
@@ -49,10 +53,23 @@ import { CommonModule } from '@angular/common';
       animation: fadeInOut 3s ease-in-out forwards;
     }
 
-    .success { background-color: var(--success); }
-    .error   { background-color: var(--danger); }
-    .info    { background-color: var(--info); }
-    .warning { background-color: var(--warning); }
+    .success {
+      background-color: var(--card-bg);
+      color: var(--success);
+    }
+    .error {
+      background-color: var(--card-bg);
+      color: var(--danger);
+
+    }
+    .info {
+      background-color: var(--card-bg);
+      color: var(--info);
+    }
+    .warning {
+      background-color: var(--card-bg);
+      color: var(--warning);
+    }
 
     @keyframes fadeInOut {
       0%   { opacity: 0; transform: translateY(-10px); }

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "primeicons/primeicons.css";
 
 * {
@@ -27,7 +28,7 @@
   --background: #EBEDEE;
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 
-  --topbar-height: 65px;
+  --topbar-height: 70px;
   --body-height: calc(100vh - var(--topbar-height) - 8px);
 }
 
@@ -52,7 +53,8 @@
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -66,25 +68,25 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   font-weight: 600;
-  font-family: 'Gotham', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
   margin: 0;
   padding: 0;
-  font-family: 'Flama', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 label {
-  font-family: 'Gotham', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .text-gotham {
-  font-family: 'Gotham', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .text-flama {
-  font-family: 'Flama', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .p-section {
@@ -112,7 +114,8 @@ label {
 }
 
 .p-20 {
-  padding: 20px;;
+  padding: 20px;
+  ;
 }
 
 .p-mini-users {
@@ -136,7 +139,6 @@ button {
   padding: .6rem .8rem;
   font-family: 'Flama', sans-serif;
   font-size: .8rem;
-
 }
 
 .custom-theme {
@@ -151,4 +153,57 @@ button {
 button:disabled {
   opacity: 0.6;
   pointer-events: none;
+}
+
+.active {
+  background-color: var(--background);
+  color: var(--neutral-text)
+}
+
+@keyframes waveAnimation {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+.wave path {
+  animation: waveAnimation 6s ease-in-out infinite alternate;
+}
+
+.btn {
+  cursor: pointer;
+  padding: .6rem .8rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: .8rem;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &.primary {
+    background-color: var(--primary);
+    color: #FFF;
+
+    &:hover {
+      background-color: var(--secondary);
+    }
+
+  }
+
+  &.secondary {
+    background-color: var(--neutral-bg);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+
+    &:hover {
+      background-color: var(--secondary);
+      color: #FFF;
+    }
+
+  }
+
 }
