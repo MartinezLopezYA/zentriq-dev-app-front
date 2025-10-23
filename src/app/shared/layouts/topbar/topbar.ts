@@ -17,8 +17,8 @@ import { Alerts } from '../../../core/services/global/alerts';
         }
         <div class="flex items-center gap-3">
           <div class="flex flex-col justify-center items-end">
-            <span class="text-gotham font-bold text-sm text-[var(--neutral-text)]">{{ user?.firstname }} {{ user?.lastname}}</span>
-            <span class="text-flama text-xs text-[var(--neutral-text)]">{{ roles.join(', ') }}</span>
+            <span class="text-roboto font-bold text-sm text-[var(--neutral-text)]">{{ user?.firstname }} {{ user?.lastname}}</span>
+            <span class="text-poppins text-xs text-[var(--neutral-text)]">{{ roles.join(', ') }}</span>
           </div>
           <img class="w-8 h-8 rounded-full object-cover" src="https://i.pravatar.cc/300" alt="User Avatar">
         </div>

@@ -15,7 +15,6 @@ const COMPONENTS = [ThemeComponet];
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, ...COMPONENTS],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
 })
 export class Login implements OnInit {
 
@@ -32,7 +31,7 @@ export class Login implements OnInit {
     private authService: Auth,
     private userService: User,
     private themeService: Theme,
-    private alertsService: Alerts,
+    private alertService: Alerts,
     private router: Router
   ) { }
 
@@ -44,7 +43,7 @@ export class Login implements OnInit {
 
   login() {
     if (this.loginForm.invalid) {
-      this.alertsService.showAlert('Por favor completa todos los campos correctamente.', 'error');
+      this.alertService.showAlert('Por favor completa todos los campos correctamente.', 'error');
       return;
     }
 
@@ -73,20 +72,18 @@ export class Login implements OnInit {
       next: (success) => {
         this.loading = false;
         if (success) {
-          this.alertsService.showAlert('Inicio de sesión exitoso.', 'success');
+          this.alertService.showAlert('Inicio de sesión exitoso.', 'success');
           this.router.navigate(['/pages/main']);
         } else {
-          this.alertsService.showAlert('Error al iniciar sesión.', 'error');
+          this.alertService.showAlert('Error al iniciar sesión.', 'error');
         }
       },
       error: (err) => {
         this.loading = false;
-        console.error('Error en login:', err);
-
         if (err.error?.errorCode === 'USER_CREDENTIALS_NOT_VALID_ERROR') {
-          this.alertsService.showAlert('Credenciales incorrectas.', 'error');
+          this.alertService.showAlert('Credenciales incorrectas.', 'error');
         } else {
-          this.alertsService.showAlert('Error inesperado. Intenta nuevamente.', 'error');
+          this.alertService.showAlert('Error inesperado. Intenta nuevamente.', 'error');
         }
       }
     });

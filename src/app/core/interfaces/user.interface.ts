@@ -1,3 +1,9 @@
+import { GenderEnum } from "../enums/gender.enum"
+import { UserIdentificationTypeInterface } from "./global/identificationtype.interface"
+import { CityInUserInterface } from "./global/location.interface"
+import { UserProfessionInterface } from "./profession.interface"
+import { RoleInUsersInterface } from "./role.interface"
+
 export interface UserLoginResponseInterface {
   useruuid: string,
   firstname: string,
@@ -69,4 +75,83 @@ export interface UserProfileInterface {
       }
     ]
   }
+}
+
+export interface GetUserInterface {
+  useruuid: string,
+  firstname: string,
+  lastname: string,
+  username: string,
+  useremail: string,
+  userphone: string,
+  roles?: RoleInUsersInterface[],
+  userprofession: UserProfessionInterface,
+  useridentificationtype: UserIdentificationTypeInterface,
+  useridentificationnumber: number,
+  isActive: boolean
+}
+
+export interface CreateUserInterface {
+  firstname: string,
+  lastname: string,
+  username: string,
+  useremail: string,
+  userpassword: string,
+  userphone?: string,
+  identificationtypeuuid: string,
+  useridentificationnumber: number,
+  usergender: GenderEnum,
+  professionuuid: string,
+  cityuuid: string,
+  useraddress: string,
+  dateOfBirth: Date,
+  isActive: boolean
+}
+
+
+export interface GetUserByUudInterface {
+  useruuid: string,
+  firstname: string,
+  lastname: string,
+  username: string,
+  useremail: string,
+  userphone: string,
+  useridentificationtype: UserIdentificationTypeInterface,
+  useridentificationnumber: number,
+  additionalInfo: AdditionalInfo,
+  isActive: boolean
+
+}
+
+export interface AdditionalInfo {
+  usergender: string,
+  userprofession: UserProfessionInterface,
+  city: CityInUserInterface,
+  useraddress: string,
+  dateOfBirth: Date,
+  createdAt: string,
+  updatedAt: string,
+  roles: {}
+}
+
+export interface UpdateUserInterface {
+  firstname?: string,
+  lastname?: string,
+  username?: string,
+  useremail?: string,
+  userphone?: string,
+  identificationtypeuuid?: string,
+  useridentificationnumber?: number,
+  usergender?: string,
+  professionuuid?: string,
+  cityuuid?: string,
+  useraddress?: string,
+  dateOfBirth?: Date
+}
+
+
+export interface UpdateUserStatusInterface {
+  useruuid: string,
+  message: string,
+  statusCode: number
 }

@@ -1,0 +1,106 @@
+@if(isOpen) {
+  <div class="absolute inset-0 z-[1500] flex items-center justify-end backdrop-blur-sm bg-black/30">
+    <div class="w-2/4 bg-[var(--card-bg)] absolute right-4 rounded-lg shadow-2xl p-20 scrollbar-class max-h-[90vh]" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+      <h2 class="text-[var(--neutral-text)] border-b border-[var(--primary)]"> Creación de Usuario </h2>
+      <form class="w-full flex flex-col gap-8 p-main-section justify-center " [formGroup]="userForm" (ngSubmit)="addNewUser()">
+        <div class="w-full grid grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="firstname" class="text-[var(--neutral-text)] font-bold text-sm">Nombres <span class="text-[var(--danger)]"> * </span> </label>
+            <input type="text" id="firstname" name="firstname" formControlName="firstname" placeholder="e.g. Juan Carlos" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true" maxlength="50"/>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="lastname" class="text-[var(--neutral-text)] font-bold text-sm">Apellidos <span class="text-[var(--danger)]"> * </span> </label>
+            <input type="text" id="lastname" name="lastname" formControlName="lastname" placeholder="e.g. Perez Lopez" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true" maxlength="50"/>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="username" class="text-[var(--neutral-text)] font-bold text-sm">Nombre de Usuario <span class="text-[var(--danger)]"> * </span> </label>
+            <input type="text" id="username" name="username" formControlName="username" placeholder="e.g. JUANPEREZ001" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true" maxlength="50"/>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="useremail" class="text-[var(--neutral-text)] font-bold text-sm">Correo electrónico <span class="text-[var(--danger)]"> * </span> </label>
+            <input type="email" id="useremail" name="useremail" formControlName="useremail" placeholder="e.g. juanperez@example.com" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true" maxlength="100"/>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="userpassword" class="text-[var(--neutral-text)] font-bold text-sm">Contraseña <span class="text-[var(--danger)]"> * </span> </label>
+            <input type="password" id="userpassword" name="userpassword" formControlName="userpassword" placeholder="e.g. JUANperez*001" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true" minlength="8"/>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="userphone" class="text-[var(--neutral-text)] font-bold text-sm">Telefono <span class="text-[var(--danger)]"> * </span> </label>
+            <input type="text" id="userphone" name="userphone" formControlName="userphone" placeholder="e.g. 3121112222" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true" maxlength="10"/>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="identificationtypeuuid" class="text-[var(--neutral-text)] font-bold text-sm">Tipo de Identificación <span class="text-[var(--danger)]"> * </span> </label>
+            <select id="identificationtypeuuid" name="identificationtypeuuid" formControlName="identificationtypeuuid" required="true">
+              <option value="" selected>Seleccionar...</option>
+              @for(type of identificationTypes; track type.identificationtypeuuid) {
+                <option [value]="type.identificationtypeuuid">{{ type.identificationtypename }}</option>
+              }
+            </select>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="useridentificationnumber" class="text-[var(--neutral-text)] font-bold text-sm">Identificación <span class="text-[var(--danger)]"> * </span> </label>
+            <input type="text" inputmode="numeric" maxlength="10" id="useridentificationnumber" name="useridentificationnumber" formControlName="useridentificationnumber" placeholder="e.g. 391818182" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" (input)="onInputNumberOnly($event)" required="true" />
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="usergender" class="text-[var(--neutral-text)] font-bold text-sm">Género </label>
+            <select id="usergender" name="usergender" formControlName="usergender">
+              <option value="" selected>Seleccionar...</option>
+              @for(gender of genderoptions; track gender.gendervalue) {
+                <option [value]="gender.gendervalue">{{ gender.genderlabel }}</option>
+              }
+            </select>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="professionuuid" class="text-[var(--neutral-text)] font-bold text-sm">Profesión </label>
+            <select id="professionuuid" name="professionuuid" formControlName="professionuuid">
+              <option value="" selected>Seleccionar...</option>
+              @for(profession of professions; track profession.professionuuid) {
+                <option [value]="profession.professionuuid">{{ profession.professionname }}</option>
+              }
+            </select>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="countryuuid" class="text-[var(--neutral-text)] font-bold text-sm">País </label>
+            <select id="countryuuid" name="countryuuid" formControlName="countryuuid" (change)="getDepartmentsByCountry(userForm.value.countryuuid)">
+              <option value="" selected>Seleccionar...</option>
+              @for(country of countries; track country.countryuuid) {
+                <option [value]="country.countryuuid">{{ country.countryname }}</option>
+              }
+            </select>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="deptouuid" class="text-[var(--neutral-text)] font-bold text-sm">Departamento </label>
+            <select id="deptouuid" name="deptouuid" formControlName="deptouuid" (change)="getCitiesByDepartment(userForm.value.deptouuid)" class="scrollbar-class">
+              <option value="" selected>Seleccionar...</option>
+              @for(department of departments; track department.departmentuuid) {
+                <option [value]="department.departmentuuid">{{ department.departmentname }}</option>
+              }
+            </select>
+          </div>
+          <div class="flex flex-col gap-1 w-full">
+            <label for="cityuuid" class="text-[var(--neutral-text)] font-bold text-sm">Ciudad </label>
+            <select id="cityuuid" name="cityuuid" formControlName="cityuuid">
+              <option value="" selected>Seleccionar...</option>
+              @for(city of cities; track city.cityuuid) {
+                <option [value]="city.cityuuid">{{ city.cityname }}</option>
+              }
+            </select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="useraddress" class="text-[var(--neutral-text)] font-bold text-sm">Dirección </label>
+            <input type="text" id="useraddress" name="useraddress" formControlName="useraddress" placeholder="e.g. CRA 15 # 18-09" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" maxlength="50"/>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label for="dateOfBirth" class="text-[var(--neutral-text)] font-bold text-sm">Fecha de Nacimiento </label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]"/>
+          </div>
+        </div>
+        <div class="w-full flex justify-end gap-4 mt-4">
+          <button class="btn secondary" (click)="onCancel()">Cancelar</button>
+          <button type="submit" class="btn primary" [disabled]="userForm.invalid || loading">Crear Usuario</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+}

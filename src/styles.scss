@@ -25,7 +25,7 @@
   --danger: #EF4444;
   --warning: #F59E0B;
   --success: #10B981;
-  --background: #EBEDEE;
+  --background: #b9c1c7;
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 
   --topbar-height: 70px;
@@ -58,13 +58,19 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
 }
 
 .custom-slider-bg {
   background-image: var(--slider);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
   font-weight: 600;
@@ -81,11 +87,11 @@ label {
   font-family: 'Roboto', sans-serif;
 }
 
-.text-gotham {
+.text-roboto {
   font-family: 'Roboto', sans-serif;
 }
 
-.text-flama {
+.text-poppins {
   font-family: 'Poppins', sans-serif;
 }
 
@@ -115,7 +121,15 @@ label {
 
 .p-20 {
   padding: 20px;
-  ;
+}
+
+.pr-8 {
+  padding-right: 2.1rem;
+}
+
+.mx-2 {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .p-mini-users {
@@ -129,15 +143,21 @@ label {
 input {
   padding: .5rem .8rem;
   background-color: var(--neutral-bor);
-  font-family: 'Flama', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: .8rem;
   font-weight: 400;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 button {
   cursor: pointer;
   padding: .6rem .8rem;
-  font-family: 'Flama', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: .8rem;
 }
 
@@ -207,3 +227,14 @@ button:disabled {
   }
 
 }
+
+.scrollbar-class {
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+}
+
+

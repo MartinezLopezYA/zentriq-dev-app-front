@@ -12,9 +12,9 @@ import { Theme } from '../../../core/services/global/theme';
             <i class="pi pi-sun text-white text-lg"></i>
           </button>
         }@else {
-          <i class="pi pi-inbox text-white text-lg"></i>
+          <i class="pi pi-inbox text-[var(--neutral-text)] lg:text-[var(--neutral-text-two)] text-lg"></i>
           <button type="button" (click)="toggleTheme()" class="custom-theme">
-            <i class="pi pi-moon text-white text-lg"></i>
+            <i class="pi pi-moon text-[var(--neutral-text)] lg:text-[var(--neutral-text-two)] text-lg"></i>
           </button>
         }
       </div>

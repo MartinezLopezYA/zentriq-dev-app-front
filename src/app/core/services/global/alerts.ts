@@ -21,7 +21,7 @@ export class Alerts {
 
     setTimeout(() => {
       this.removeAlert(id);
-    }, 3000);
+    }, 5000);
   }
 
   private removeAlert(id: number) {

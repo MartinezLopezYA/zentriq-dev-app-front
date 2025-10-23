@@ -8,9 +8,9 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="fixed top-1 right-1 flex flex-col gap-0.5 z-1000">
+    <div class="fixed top-3 right-3 flex flex-col gap-0.5 z-2000">
       @for (alert of alerts; track alert.id) {
-        <div class="alert" [ngClass]="alert.type">
+        <div class="alert border {{ alert.type === 'success' ? 'border-[var(--success)]' : alert.type === 'error' ? 'border-[var(--danger)]' : alert.type === 'info' ? 'border-[var(--info)]' : 'border-[var(--warning)]' }}" [ngClass]="alert.type">
           <i class="pi text-lg"
             [ngClass]="{
               'pi-check-circle': alert.type === 'success',

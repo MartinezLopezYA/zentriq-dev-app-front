@@ -7,7 +7,7 @@ import { Auth } from './core/services/auth';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 // import { SpinnerComponent } from './shared/components/spinner/spinner';
 import { Title } from '@angular/platform-browser';
-import { filter, map, mergeMap } from 'rxjs';
+import { filter, map, mergeMap, switchMap, take } from 'rxjs';
 import { ModalComponent } from './shared/components/modal-component/modal-component';
 import { ModalOptions } from './core/interfaces/global/modal.interface';
 import { Modal } from './core/services/global/modal';
@@ -78,7 +78,7 @@ export class App {
         if (!isAuthenticated) {
           this.router.navigate(['/auth/login']);
         } else {
-          this.router.navigate(['/pages/main']);
+          this.router.navigate(['/pages/users']);
         }
       },
       error: (err) => {
@@ -100,10 +100,10 @@ export class App {
       }),
       mergeMap((route) => route.data)
     )
-    .subscribe((data) => {
-      const title = data['title'] || 'ZentriqDev';
-      this.titleService.setTitle(title);
-    })
+      .subscribe((data) => {
+        const title = data['title'] || 'ZentriqDev';
+        this.titleService.setTitle(title);
+      })
   }
 
   handleConfirm() {

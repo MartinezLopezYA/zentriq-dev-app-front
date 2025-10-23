@@ -19,13 +19,13 @@ export class SidebarLeft {
 
     this.menuItems = [
       {
-        name: 'Clientes',
-        routerLink: '/pages/clients',
+        name: 'Usuarios',
+        routerLink: '/pages/users',
         icon: 'pi-users',
       },
       {
-        name: 'Usuarios',
-        routerLink: '/pages/users',
+        name: 'Clientes',
+        routerLink: '/pages/clients',
         icon: 'pi-building',
       },
       {
