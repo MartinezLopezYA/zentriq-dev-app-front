@@ -1,5 +1,5 @@
-<div class="w-[100vw] h-[100dvh] bg-[var(--neutral-bg)] flex flex-row justify-between items-center gap-[20px] p-main-section">
-  <section class="hidden w-[60%] h-[100%] md:hidden lg:flex flex-col justify-between items-center gap-2 p-main-section custom-slider-bg rounded-lg">
+<div class="w-screen h-dvh bg-(--neutral-bg) flex flex-row justify-between items-center gap-5 p-main-section">
+  <section class="hidden w-[60%] h-full md:hidden lg:flex flex-col justify-between items-center gap-2 p-main-section custom-slider-bg rounded-lg">
     <div class="flex w-full h-fit justify-between items-center">
       <p class="text-white font-semibold">ZENTRIQ.<span class="text-[#1E293B]">DEV</span></p>
       <app-theme-component></app-theme-component>
@@ -8,7 +8,7 @@
       <img src="/images/Imagedevelop.svg" alt="Login Illustration" class="w-[400PX]" />
     </div>
     <div class="w-full flex flex-col justify-center items-center gap-2">
-      <div class="flex justify-center items-center gap-1 bg-[var(--neutral-bg)] p-mini-users rounded-2xl">
+      <div class="flex justify-center items-center gap-1 bg-(--neutral-bg) p-mini-users rounded-2xl">
         <img src="/icons/Man.png" alt="Icono de usuario" class="w-[30px]" />
         <img src="/icons/Man-1.png" alt="Icono de usuario" class="w-[30px]" />
         <img src="/icons/Man-2.png" alt="Icono de usuario" class="w-[30px]" />
@@ -18,7 +18,7 @@
       <p class="text-white">Conectamos ideas con impacto</p>
     </div>
   </section>
-  <section class="w-full lg:w-[40%] h-[100%] flex flex-col justify-evenly items-center gap-2 p-main-section bg-transparent rounded-lg">
+  <section class="w-full lg:w-[40%] h-full flex flex-col justify-evenly items-center gap-2 p-main-section bg-transparent rounded-lg">
     <app-theme-component class="flex lg:hidden self-end"></app-theme-component>
     <div class="w-full flex flex-1 flex-col justify-center items-center gap-4">
       <div class="flex flex-col justify-center items-center gap-4">
@@ -56,7 +56,7 @@
               </div>
           </div>
         </div>
-      <button type="submit" class="w-full bg-[var(--primary)] text-white rounded hover:bg-[var(--secondary)] transition duration-300 ease-in-out" [disabled]="loginForm.invalid || loading">
+      <button type="submit" class="w-full bg-(--primary) text-white rounded hover:bg-(--secondary) transition duration-300 ease-in-out" [disabled]="loginForm.invalid || loading">
         @if(loading) {
           <i class="pi pi-spin pi-spinner mr-2"></i> Iniciando sesión...
         }@else {
@@ -68,7 +68,7 @@
     <p class="hidden text-(--neutral-text) lg:flex text-center">En Zentriq desarrollamos soluciones digitales modernas para
       negocios y emprendedores.</p>
     <div class="flex w-full lg:hidden flex-col justify-center items-center gap-2">
-      <div class="flex justify-center items-center gap-1 bg-[var(--neutral-bg)] p-mini-users rounded-2xl">
+      <div class="flex justify-center items-center gap-1 bg-(--neutral-bg) p-mini-users rounded-2xl">
         <img src="/icons/Man.png" alt="Icono de usuario" class="w-[30px]" />
         <img src="/icons/Man-1.png" alt="Icono de usuario" class="w-[30px]" />
         <img src="/icons/Man-2.png" alt="Icono de usuario" class="w-[30px]" />
