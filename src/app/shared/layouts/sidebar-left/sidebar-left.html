@@ -1,10 +1,10 @@
-<div class="h-full bg-[var(--card-bg)] rounded-lg w-13 flex flex-col justify-center items-center gap-2">
+<div class="h-full bg-(--card-bg) rounded-lg w-13 flex flex-col justify-center items-center gap-2">
   @for(item of menuItems; track item.name) {
     <div class="relative group">
-      <a routerLink="{{item.routerLink}}" routerLinkActive="active" class="flex justify-center items-center text-[var(--primary)] border border-[var(--background)] text-lg hover:bg-[var(--background)] hover:text-[var(--neutral-text)] transition duration-300 ease-in-out p-10 rounded-full">
+      <a routerLink="{{item.routerLink}}" routerLinkActive="active" class="flex justify-center items-center text-(--primary) text-lg hover:bg-(--neutral-bor) hover:text-(--neutral-text) transition duration-300 ease-in-out p-10 rounded">
         <i class="pi {{item.icon}} text-sm"></i>
       </a>
-      <div class="absolute left-full top-1/2 -translate-y-1/2 ml-2 whitespace-nowrap bg-[var(--background)] text-[var(--neutral-text)] mx-2 text-sm p-mini rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg">
+      <div class="absolute left-full top-1/2 -translate-y-1/2 ml-2 whitespace-nowrap bg-(--background) text-(--neutral-text) mx-2 text-sm p-mini rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg">
         {{ item.name }}
       </div>
     </div>

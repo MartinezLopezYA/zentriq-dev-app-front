@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { UserForm } from '../../../core/services/global/user-form';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -23,6 +23,10 @@ import { CreateUserInterface } from '../../../core/interfaces/user.interface';
 })
 export class UserFormComponent {
 
+  isOpen: boolean = false;
+  closing: boolean = false;
+  entered: boolean = true;
+
   showPassword: boolean = false;
   loading: boolean = false;
   identificationTypes: IdentificationTypeInterface[] = [];
@@ -30,6 +34,18 @@ export class UserFormComponent {
   countries: CountryInterface[] = [];
   departments: DepartmentInterface[] = [];
   cities: CityInterface[] = [];
+  dropdownOpenIdentifiaction: boolean = false;
+  selectedIdentification: any = null;
+  genderDropdownOpen = false;
+  selectedGender: any = null;
+  professionDropdownOpen = false;
+  selectedProfession: any = null;
+  countryDropdownOpen = false;
+  selectedCountry: any = null;
+  departmentDropdownOpen = false;
+  selectedDepartment: any = null;
+  cityDropdownOpen = false;
+  selectedCity: any = null;
 
   genderoptions: GenderInterface[] = [
     {
@@ -72,12 +88,11 @@ export class UserFormComponent {
     private identificationTypeService: IdentificationType,
     private professionService: Profession,
     private locationService: Locations
-  ) { }
+  ) {}
 
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 
-  isOpen: boolean = false;
   private subscription!: Subscription;
 
   private onConfirmCallback: () => void = () => { };
@@ -101,25 +116,37 @@ export class UserFormComponent {
 
   onOpen() {
     this.isOpen = true;
+    this.closing = false;
+    this.entered = false;
+
+    setTimeout(() => {
+      this.entered = true;
+    }, 10);
+
+
   }
 
   onClose() {
-    this.userForm.reset();
-    this.userForm.patchValue({
-      countryuuid: '',
-      deptouuid: '',
-      cityuuid: '',
-      professionuuid: '',
-      usergender: '',
-      identificationtypeuuid: ''
-    });
-    this.userForm.markAsPristine();
-    this.userForm.markAsUntouched();
-    this.isOpen = false;
+    this.entered = false;
+    this.closing = true;
+    this.closeDropdown();
+
+    setTimeout(() => {
+      this.isOpen = false;
+      this.userForm.reset();
+      this.userForm.patchValue({
+        countryuuid: '',
+        deptouuid: '',
+        cityuuid: '',
+        professionuuid: '',
+        usergender: '',
+        identificationtypeuuid: ''
+      });
+    }, 500);
+
   }
 
   onConfirm() {
-    // this.confirm.emit();
     this.addNewUser();
     this.onClose();
   }
@@ -151,7 +178,6 @@ export class UserFormComponent {
         this.onClose();
       },
       error: (err) => {
-        // Todo manejar errores específicos
         this.loading = false;
         this.alertService.showAlert('Error al crear el usuario.', 'error');
       }
@@ -159,7 +185,6 @@ export class UserFormComponent {
   }
 
   onCancel() {
-    this.cancel.emit();
     this.onClose();
   }
 
@@ -218,10 +243,103 @@ export class UserFormComponent {
     });
   }
 
-
   onInputNumberOnly(event: Event): void {
     const input = event.target as HTMLInputElement;
     input.value = input.value.replace(/\D/g, '');
   }
+
+  toggleDropdown() {
+    this.dropdownOpenIdentifiaction = !this.dropdownOpenIdentifiaction;
+  }
+
+  selectIdentification(type: any) {
+    this.selectedIdentification = type;
+    this.userForm.patchValue({ identificationtypeuuid: type.identificationtypeuuid });
+    this.dropdownOpenIdentifiaction = false;
+  }
+
+  toggleGenderDropdown() {
+    this.genderDropdownOpen = !this.genderDropdownOpen;
+  }
+
+  selectGender(gender: any) {
+    this.selectedGender = gender;
+    this.genderDropdownOpen = false;
+    this.userForm.patchValue({ usergender: gender.gendervalue });
+  }
+
+  toggleProfessionDropdown() {
+    this.professionDropdownOpen = !this.professionDropdownOpen;
+  }
+
+  selectProfession(profession: any) {
+    this.selectedProfession = profession;
+    this.professionDropdownOpen = false;
+    this.userForm.patchValue({ professionuuid: profession.professionuuid });
+  }
+
+  toggleCountryDropdown() {
+    this.countryDropdownOpen = !this.countryDropdownOpen;
+  }
+
+  selectCountry(country: any) {
+    this.selectedCountry = country;
+    this.countryDropdownOpen = false;
+    this.userForm.patchValue({ countryuuid: country.countryuuid });
+    this.departments = [];
+    this.cities = [];
+    this.userForm.patchValue({ deptouuid: '', cityuuid: '' });
+    this.getDepartmentsByCountry(country.countryuuid);
+  }
+
+  toggleDepartmentDropdown() {
+    this.departmentDropdownOpen = !this.departmentDropdownOpen;
+  }
+
+  selectDepartment(department: any) {
+    this.selectedDepartment = department;
+    this.departmentDropdownOpen = false;
+    this.userForm.patchValue({ deptouuid: department.departmentuuid });
+    this.cities = [];
+    this.userForm.patchValue({ cityuuid: '' });
+    this.getCitiesByDepartment(department.departmentuuid);
+  }
+
+  toggleCityDropdown() {
+    this.cityDropdownOpen = !this.cityDropdownOpen;
+  }
+
+  selectCity(city: any) {
+    this.selectedCity = city;
+    this.cityDropdownOpen = false;
+    this.userForm.patchValue({ cityuuid: city.cityuuid });
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const target = event.target as HTMLElement;
+    const isInside = target.closest('.relative.w-full');
+    if (!isInside) {
+      this.closeDropdown();
+    }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onEscape(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.onClose();
+    }
+  }
+
+  closeDropdown() {
+    this.dropdownOpenIdentifiaction = false;
+    this.genderDropdownOpen = false;
+    this.professionDropdownOpen = false;
+    this.countryDropdownOpen = false;
+    this.departmentDropdownOpen = false;
+    this.cityDropdownOpen = false;
+  }
+
 
 }

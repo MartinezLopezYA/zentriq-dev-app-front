@@ -140,6 +140,10 @@ label {
   margin-left: .8rem;
 }
 
+.p-input {
+  padding: .5rem .8rem;
+}
+
 input {
   padding: .5rem .8rem;
   background-color: var(--neutral-bor);
@@ -176,8 +180,8 @@ button:disabled {
 }
 
 .active {
-  background-color: var(--background);
-  color: var(--neutral-text)
+  background-color: var(--neutral-bor);
+  color: var(--neutral-text);
 }
 
 @keyframes waveAnimation {

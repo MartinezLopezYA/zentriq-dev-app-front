@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="fixed top-3 right-3 flex flex-col gap-0.5 z-2000">
       @for (alert of alerts; track alert.id) {
-        <div class="alert border {{ alert.type === 'success' ? 'border-[var(--success)]' : alert.type === 'error' ? 'border-[var(--danger)]' : alert.type === 'info' ? 'border-[var(--info)]' : 'border-[var(--warning)]' }}" [ngClass]="alert.type">
+        <div class="alert border {{ alert.type === 'success' ? 'border-(--success)' : alert.type === 'error' ? 'border-(--danger)' : alert.type === 'info' ? 'border-(--info)' : 'border-(--warning)' }}" [ngClass]="alert.type">
           <i class="pi text-lg"
             [ngClass]="{
               'pi-check-circle': alert.type === 'success',
@@ -19,12 +19,12 @@ import { CommonModule } from '@angular/common';
               'pi-exclamation-triangle': alert.type === 'warning'
             }">
           </i>
-          <div class="w-[1px] h-[30px] border-1 border-[var(--white)]"></div>
+          <div class="w-px h-[30px] border border-(--white)"></div>
           <div class="flex flex-col">
-            <h6 class="{{ alert.type === 'success' ? 'text-[var(--success)]'
-              : alert.type === 'error' ? 'text-[var(--danger)]'
-              : alert.type === 'info' ? 'text-[var(--info)]'
-              : 'text-[var(--warning)]'
+            <h6 class="{{ alert.type === 'success' ? 'text-(--success)'
+              : alert.type === 'error' ? 'text-(--danger)'
+              : alert.type === 'info' ? 'text-(--info)'
+              : 'text-(--warning)'
             }}">
               {{
                 alert.type === 'success' ? 'Exitoso'
@@ -33,7 +33,7 @@ import { CommonModule } from '@angular/common';
                 : 'Advertencia'
               }}
             </h6>
-            <p class="text-[var(--neutral-text)]">{{ alert.message }}</p>
+            <p class="text-(--neutral-text)">{{ alert.message }}</p>
           </div>
         </div>
       }

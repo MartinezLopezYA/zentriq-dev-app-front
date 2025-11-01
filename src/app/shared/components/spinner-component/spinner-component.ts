@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <div class="w-full h-full">
-      <div class="text-[var(--neutral-text)] fixed bottom-3 right-3 flex flex-col items-center justify-center gap-2">
+      <div class="text-(--neutral-text) fixed bottom-3 right-3 flex flex-col items-center justify-center gap-2">
         <i class="pi pi-spin pi-spinner"></i>
         <span class="text-poppins">Cargando...</span>
       </div>

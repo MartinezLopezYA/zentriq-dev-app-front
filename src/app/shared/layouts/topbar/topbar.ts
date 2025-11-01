@@ -8,8 +8,8 @@ import { Alerts } from '../../../core/services/global/alerts';
   selector: 'app-topbar',
   imports: [],
   template: `
-    <div class="w-full h-[var(--topbar-height)] p-section">
-      <div class="w-full h-full flex justify-between items-center bg-[var(--card-bg)] rounded-lg px-8">
+    <div class="w-full h-(--topbar-height) p-section">
+      <div class="w-full h-full flex justify-between items-center bg-(--card-bg) rounded-lg px-8">
         @if(theme === 'light') {
           <img src="/images/Logo Completo Light.png" alt="">
         }@else {
@@ -17,8 +17,8 @@ import { Alerts } from '../../../core/services/global/alerts';
         }
         <div class="flex items-center gap-3">
           <div class="flex flex-col justify-center items-end">
-            <span class="text-roboto font-bold text-sm text-[var(--neutral-text)]">{{ user?.firstname }} {{ user?.lastname}}</span>
-            <span class="text-poppins text-xs text-[var(--neutral-text)]">{{ roles.join(', ') }}</span>
+            <span class="text-roboto font-bold text-sm text-(--neutral-text)">{{ user?.firstname }} {{ user?.lastname}}</span>
+            <span class="text-poppins text-xs text-(--neutral-text)">{{ roles.join(', ') }}</span>
           </div>
           <img class="w-8 h-8 rounded-full object-cover" src="https://i.pravatar.cc/300" alt="User Avatar">
         </div>

@@ -1,13 +1,10 @@
 <section class="w-full h-full p-mini">
   <app-user-form-component></app-user-form-component>
-  <div
-    class="w-full h-[var(--topbar-heights)] flex justify-between items-center gap-3 border-b-2 border-[var(--primary)] p-mini">
-    <h2 class="text-[var(--neutral-text)] font-bold text-lg flex-1">Gestión de Usuarios</h2>
+  <div class="w-full h-[var(--topbar-heights)] flex justify-between items-center gap-3 border-b border-(--primary) p-mini">
+    <h2 class="text-(--neutral-text) font-bold text-lg flex-1">Gestión de Usuarios</h2>
     <div class="flex relative">
-      <i class="pi pi-search absolute top-1/2 -translate-y-1/2 right-0 p-10 text-[var(--placeholder)]"></i>
-      <input type="filter" id="filter" name="filter" placeholder="Buscar usuario..."
-        class="w-[200px] text-[var(--placeholder)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)] pr-8"
-        required="true" />
+      <i class="pi pi-search absolute top-1/2 -translate-y-1/2 right-0 p-10 text-(--placeholder)"></i>
+      <input type="filter" id="filter" name="filter" placeholder="Buscar usuario..." class="w-[200px] text-(--placeholder) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text) pr-8" required="true" />
     </div>
     <button type="button"
       class="w-fit bg-[var(--primary)] text-white rounded hover:bg-[var(--secondary)] transition duration-300 ease-in-out flex items-center gap-3"
@@ -19,7 +16,7 @@
   <div class="w-full h-[calc(100%-var(--topbar-heights))] overflow-auto p-20 relative">
     <table class="w-full">
       <thead>
-        <tr class=" text-[var(--neutral-text)] border-b-2 border-[var(--neutral-hv)]">
+        <tr class=" text-(--neutral-text) border-b-2 border-[var(--neutral-hv)]">
           <th class="text-roboto p-mini text-left hover:bg-[var(--neutral-hv)] cursor-pointer w-3/8">Nombre</th>
           <th class="text-roboto p-mini text-left hover:bg-[var(--neutral-hv)] cursor-pointer w-3/8">Rol</th>
           <th class="text-roboto p-mini text-center hover:bg-[var(--neutral-hv)] cursor-pointer w-1/8">Estado</th>
@@ -30,29 +27,29 @@
         @for(user of users; track user.useruuid) {
         <tr class="cursor-pointer hover:bg-[var(--neutral-hv)]">
           <td class="text-poppins p-mini">
-            <p class="text-[var(--neutral-text)] font-bold"> {{ user.firstname }} {{ user.lastname }} </p>
-            <p class="text-[var(--neutral-text)] text-sm"> {{ user.useremail }} </p>
+            <p class="text-(--neutral-text) font-medium"> {{ user.firstname }} {{ user.lastname }} </p>
+            <p class="text-(--neutral-text) text-sm"> {{ user.useremail }} </p>
           </td>
           <td class="text-poppins p-mini">
             @for(role of user?.roles; track role.roleuuid) {
-            <p class="inline text-roboto text-sm bg-[var(--accent)] text-[var(--neutral-text)] p-10 rounded"> {{
-              role.rolename }} </p>
+            <p class="inline text-roboto text-sm bg-(--neutral-bor) text-(--neutral-text) p-10 rounded">
+              {{ role.rolename }} </p>
             }
           </td>
           <td class="text-poppins p-mini text-center">
             <span class="text-roboto font-medium"
-              [ngClass]="{'text-[var(--success)]': user.isActive, 'text[var(--danger)]': !user.isActive}">
+              [ngClass]="{'text-(--success)': user.isActive, 'text[var(--danger)]': !user.isActive}">
               {{ user.isActive ? 'Activo' : 'Inactivo' }}
             </span>
           </td>
           <td class="p-mini text-center">
             <div class="flex justify-center gap-3">
               <button
-                class="text-[var(--success)] rounded p-10 border flex justify-center items-center hover:bg-[var(--success)] hover:text-[var(--card-bg)] transition duration-300 ease-in-out mr-2">
+                class="text-(--success) rounded p-10 border flex justify-center items-center hover:bg-[var(--success)] hover:text-[var(--card-bg)] transition duration-300 ease-in-out mr-2">
                 <i class="pi pi-pencil"></i>
               </button>
               <button
-                class="text-[var(--danger)] rounded p-10 border flex justify-center items-center hover:bg-[var(--danger)] hover:text-[var(--card-bg)] transition duration-300 ease-in-out mr-2">
+                class="text-(--danger) rounded p-10 border flex justify-center items-center hover:bg-[var(--danger)] hover:text-[var(--card-bg)] transition duration-300 ease-in-out mr-2">
                 <i class="pi pi-trash"></i>
               </button>
             </div>

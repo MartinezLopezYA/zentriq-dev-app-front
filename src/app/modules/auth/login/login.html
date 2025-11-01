@@ -27,30 +27,30 @@
         }@else {
           <img src="icons/Logo Isotipo Dark.png" alt="Logo de Zentriq.dev" class="w-[50px]"/>
         }
-        <h2 class="text-[var(--neutral-text)] font-bold text-2xl">Bienvenido de Vuelta</h2>
+        <h2 class="text-(--neutral-text) font-bold text-2xl">Bienvenido de Vuelta</h2>
       </div>
       <form class="w-full flex flex-col gap-8 p-main-section justify-center" [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="w-full flex flex-col gap-3">
           <div class="flex flex-col gap-1 w-full">
-            <label for="email" class="text-[var(--neutral-text)] font-bold text-1xl">Usuario</label>
+            <label for="email" class="text-(--neutral-text) font-bold text-1xl">Usuario</label>
             <input type="email" id="email" name="email" formControlName="useremail"
               placeholder="Ingrese su correo electrónico"
-              class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required="true"/>
+              class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true"/>
           </div>
           <div class="flex flex-col gap-1 w-full">
             <div class="relative flex justify-between items-center w-full">
-              <label for="userpassword" class="text-[var(--neutral-text)] font-bold text-1xl">Contraseña</label>
-              <a href="#" class="text-[var(--neutral-text)] hover:text-[var(--primary)] hover:underline">¿Has olvidado tu contraseña?</a>
+              <label for="userpassword" class="text-(--neutral-text) font-bold text-1xl">Contraseña</label>
+              <a href="#" class="text-(--neutral-text) hover:text-(--primary) hover:underline">¿Has olvidado tu contraseña?</a>
             </div>
             <div class="relative">
               <input [type]="showPassword ? 'text' : 'password'" id="userpassword" name="userpassword" formControlName="userpassword"
               placeholder="Ingrese su contraseña"
-              class="w-full border text-[var(--placeholder)] border-[var(--neutral-bor)] rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-[var(--secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:text-[var(--neutral-text)]" required=""/>
+              class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required=""/>
               <span class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer opacity-70" (click)="togglePasswordVisibility()">
                 @if(!showPassword) {
-                  <i class="pi pi-eye text-[var(--placeholder)]"></i>
+                  <i class="pi pi-eye text-(--placeholder)"></i>
                 }@else {
-                  <i class="pi pi-eye-slash text-[var(--placeholder)]"></i>
+                  <i class="pi pi-eye-slash text-(--placeholder)"></i>
                 }
                 </span>
               </div>
@@ -65,7 +65,7 @@
       </button>
     </form>
     </div>
-    <p class="hidden text-[var(--neutral-text)] lg:flex text-center">En Zentriq desarrollamos soluciones digitales modernas para
+    <p class="hidden text-(--neutral-text) lg:flex text-center">En Zentriq desarrollamos soluciones digitales modernas para
       negocios y emprendedores.</p>
     <div class="flex w-full lg:hidden flex-col justify-center items-center gap-2">
       <div class="flex justify-center items-center gap-1 bg-[var(--neutral-bg)] p-mini-users rounded-2xl">
@@ -75,7 +75,7 @@
         <img src="/icons/Woman.png" alt="Icono de usuario" class="w-[30px]" />
         <img src="/icons/Woman-1.png" alt="Icono de usuario" class="w-[30px]" />
       </div>
-      <p class="text-[var(--neutral-text)]">Conectamos ideas con impacto</p>
+      <p class="text-(--neutral-text)">Conectamos ideas con impacto</p>
     </div>
   </section>
 </div>
