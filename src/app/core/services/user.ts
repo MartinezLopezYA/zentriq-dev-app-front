@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/dev.env';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,7 +16,7 @@ export class User {
 
   public currentUser = computed(() => this._currentUser());
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getProfile(): Observable<UserProfileInterface> {
     return this.http.get<UserProfileInterface>(`${this.API_AUTH}/v1/profile`);

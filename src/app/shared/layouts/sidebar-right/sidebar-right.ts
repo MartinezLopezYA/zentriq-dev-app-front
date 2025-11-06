@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Auth } from '../../../core/services/auth';
 import { Theme } from '../../../core/services/global/theme';
 import { UserLoginResponseInterface } from '../../../core/interfaces/user.interface';
@@ -18,12 +18,12 @@ export class SidebarRight {
   theme: 'light' | 'dark' = 'light';
   user: UserLoginResponseInterface | null = null;
 
-  constructor(
-    private themeService: Theme,
-    private authService: Auth,
-    private router: Router,
-    private modalService: Modal,
-  ) {
+  private themeService = inject(Theme);
+  private authService = inject(Auth);
+  private router = inject(Router);
+  private modalService = inject(Modal);
+
+  constructor() {
     this.themeService.theme$.subscribe((theme: 'light' | 'dark') => {
       this.theme = theme;
     })

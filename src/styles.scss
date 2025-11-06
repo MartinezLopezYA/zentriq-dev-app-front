@@ -15,7 +15,7 @@
   --alert: #7C4DFF;
   --info: #00C4D8;
   --accent: #00DCF5;
-  --neutral-bor: #E2E8F0;
+  --neutral-bor: #d5dae0;
   --neutral-hv: #F1F5F9;
   --neutral-text: #1E293B;
   --neutral-text-two: #F8FAFC;
@@ -65,12 +65,7 @@ body {
   background-image: var(--slider);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   font-weight: 600;
@@ -125,6 +120,10 @@ label {
 
 .pr-8 {
   padding-right: 2.1rem;
+}
+
+.mt-table {
+  margin-top: 5px;
 }
 
 .mx-2 {

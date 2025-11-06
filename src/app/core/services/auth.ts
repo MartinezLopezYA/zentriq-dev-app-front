@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/dev.env';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { AuthResponseInterface, CredentialsInterface, UserSessionInterface } from '../interfaces/auth.interface';
@@ -18,10 +18,8 @@ export class Auth {
   public currentUser = computed(() => this._currentUser());
   public authStatus = computed(() => this._authStatus());
 
-  constructor(
-    private router: Router,
-    private http: HttpClient
-  ) {}
+  private http = inject(HttpClient);
+  private router = inject(Router);
 
   public setAuthStatus(user: UserLoginResponseInterface | null, status: boolean): void {
     this._authStatus.set(status);

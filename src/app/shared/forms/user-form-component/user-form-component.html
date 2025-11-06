@@ -52,7 +52,7 @@
           </div>
           <div class="flex flex-col gap-1 w-full">
             <label for="useridentificationnumber" class="text-(--neutral-text) font-bold text-sm">Identificación <span class="text-(--danger)"> * </span> </label>
-            <input type="text" inputmode="numeric" maxlength="10" id="useridentificationnumber" name="useridentificationnumber" formControlName="useridentificationnumber" placeholder="e.g. 391818182" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" (input)="onInputNumberOnly($event)" required="true" />
+            <input type="text" inputmode="numeric" maxlength="10" minlength="6" id="useridentificationnumber" name="useridentificationnumber" formControlName="useridentificationnumber" placeholder="e.g. 391818182" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" (input)="onInputNumberOnly($event)" required="true" />
           </div>
           <div class="relative w-full">
             <label for="usergender" class="text-(--neutral-text) font-bold text-sm">Género </label>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/dev.env';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ export class Profession {
 
   private API_BACK: string = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   getAllProfessions(): Observable<GetProfessionsInterface[]> {
     return this.http.get<GetProfessionsInterface[]>(`${this.API_BACK}/professions/v1`);

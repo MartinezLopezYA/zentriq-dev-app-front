@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Theme } from '../../../core/services/global/theme';
 import { UserLoginResponseInterface } from '../../../core/interfaces/user.interface';
 import { User } from '../../../core/services/user';
@@ -32,18 +32,15 @@ import { Alerts } from '../../../core/services/global/alerts';
     }
   `
 })
-export class Topbar implements OnInit {
+export class Topbar {
 
   theme: 'light' | 'dark' = 'light';
   user: UserLoginResponseInterface | null = null;
   roles: string[] = [];
 
-
-  constructor(
-    private themeService: Theme,
-    private userService: User,
-    private alertService: Alerts,
-  ) { }
+  private themeService = inject(Theme);
+  private userService = inject(User);
+  private alertService = inject(Alerts);
 
   ngOnInit(): void {
     this.themeService.theme$.subscribe((theme: 'light' | 'dark') => {

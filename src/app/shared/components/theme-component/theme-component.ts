@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Theme } from '../../../core/services/global/theme';
 
 @Component({
@@ -20,13 +20,13 @@ import { Theme } from '../../../core/services/global/theme';
       </div>
   `
 })
-export class ThemeComponet implements OnInit {
+export class ThemeComponet {
 
   theme: 'light' | 'dark' = 'light';
 
-  constructor(
-    private themeService: Theme
-  ) {}
+  private themeService = inject(Theme);
+
+  constructor() {}
 
   ngOnInit(): void {
     this.themeService.theme$.subscribe((theme: 'light' | 'dark') => {

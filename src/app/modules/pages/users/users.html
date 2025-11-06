@@ -1,62 +1,92 @@
-<section class="w-full h-full p-mini">
-  <app-user-form-component></app-user-form-component>
+<app-user-form-component></app-user-form-component>
+<section class="w-full h-full p-mini flex flex-col gap-3">
   <div class="w-full h-(--topbar-heights) flex justify-between items-center gap-3 border-b border-(--primary) p-mini">
     <h2 class="text-(--neutral-text) font-bold text-lg flex-1">Gestión de Usuarios</h2>
     <div class="flex relative">
       <i class="pi pi-search absolute top-1/2 -translate-y-1/2 right-0 p-10 text-(--placeholder)"></i>
-      <input type="filter" id="filter" name="filter" placeholder="Buscar usuario..." class="w-[200px] text-(--placeholder) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text) pr-8" required="true" />
+      <input type="filter" id="filter" name="filter" placeholder="Buscar usuario..." class="w-[200px] text-(--placeholder) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text) pr-8" [(ngModel)]="filter"  (input)="onGlobalFilter()"/>
     </div>
-    <button type="button"
-      class="w-fit bg-(--primary) text-white rounded hover:bg-(--secondary) transition duration-300 ease-in-out flex items-center gap-3"
-      (click)="addNewUser()">
+    <button type="button" class="w-fit bg-(--primary) text-white rounded hover:bg-(--secondary) transition duration-300 ease-in-out flex items-center gap-3" (click)="addNewUser()">
       <i class="pi pi-plus"></i>
       <span>Nuevo</span>
     </button>
   </div>
-  <div class="w-full h-[calc(100%-var(--topbar-heights))] overflow-auto p-20 relative">
-    <table class="w-full">
-      <thead>
-        <tr class=" text-(--neutral-text) border-b-2 border-(--neutral-hv)">
-          <th class="text-roboto p-mini text-left hover:bg-(--neutral-hv) cursor-pointer w-3/8">Nombre</th>
-          <th class="text-roboto p-mini text-left hover:bg-(--neutral-hv) cursor-pointer w-3/8">Rol</th>
-          <th class="text-roboto p-mini text-center hover:bg-(--neutral-hv) cursor-pointer w-1/8">Estado</th>
-          <th class="text-roboto p-mini text-center w-1/8">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(user of users; track user.useruuid) {
-        <tr class="cursor-pointer hover:bg-(--neutral-hv)">
-          <td class="text-poppins p-mini">
-            <p class="text-(--neutral-text) font-medium"> {{ user.firstname }} {{ user.lastname }} </p>
-            <p class="text-(--neutral-text) text-sm"> {{ user.useremail }} </p>
-          </td>
-          <td class="text-poppins p-mini">
-            @for(role of user?.roles; track role.roleuuid) {
-            <p class="inline text-roboto text-sm bg-(--neutral-bor) text-(--neutral-text) p-10 rounded">
-              {{ role.rolename }} </p>
-            }
-          </td>
-          <td class="text-poppins p-mini text-center">
-            <span class="text-roboto font-medium"
-              [ngClass]="{'text-(--success)': user.isActive, 'text[var(--danger)]': !user.isActive}">
-              {{ user.isActive ? 'Activo' : 'Inactivo' }}
-            </span>
-          </td>
-          <td class="p-mini text-center">
-            <div class="flex justify-center gap-3">
-              <button
-                class="text-(--success) rounded p-10 border flex justify-center items-center hover:bg-(--success) hover:text-(--card-bg) transition duration-300 ease-in-out mr-2">
-                <i class="pi pi-pencil"></i>
-              </button>
-              <button
-                class="text-(--danger) rounded p-10 border flex justify-center items-center hover:bg-(--danger)]¿ hover:text-(--card-bg) transition duration-300 ease-in-out mr-2">
-                <i class="pi pi-trash"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+  <div class="overflow-auto scrollbar-class">
+    <div class="overflow-x-auto rounded-lg shadow-md border border-(--neutral-bor)">
+      <table class="min-w-full text-sm text-left text-(--neutral-text) bg-(--card-bg)">
+        <thead class="bg-(--background) text-(--neutral-text) text-roboto uppercase h-11">
+          <tr>
+            <th class="p-10 font-semibold cursor-pointer">Nombre</th>
+            <th class="p-10 font-semibold">Rol</th>
+            <th class="p-10 font-semibold text-center">Estado</th>
+            <th class="p-10 font-semibold text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of paginatedUsers; track user.useruuid) {
+            <tr class="border-b border-(--neutral-bor) hover:bg-(--neutral-hv) transition-colors">
+              <td class="p-section text-poppins">
+                <p class="font-medium text-(--neutral-text)">
+                  {{ user.firstname }} {{ user.lastname }}
+                </p>
+                <p class="text-sm text-(--placeholder)">
+                  {{ user.useremail }}
+                </p>
+              </td>
+              <td class="p-section text-poppins overflow-auto">
+                @for (role of user.roles; track role.roleuuid) {
+                <span class="inline-flex items-center p-input text-xs font-semibold rounded-full bg-(--primary)/20 text-(--primary)">
+                  {{ role.rolename }}
+                </span>
+                }
+              </td>
+              <td class="p-section text-center">
+                <i class="pi" [ngClass]="{
+                      'pi-check-circle text-(--success)': user.isActive,
+                      'pi-times-circle text-(--danger)': !user.isActive
+                    }" [title]="user.isActive ? 'Activo' : 'Inactivo'"></i>
+              </td>
+              <td class="p-section text-center">
+                <div class="flex justify-center gap-3">
+                  <button class="text-(--success) border border-(--success) rounded p-section flex justify-center items-center hover:bg-(--success) hover:text-(--card-bg) transition duration-300 ease-in-out" (click)="editUser(user)">
+                    <i class="pi pi-pencil"></i>
+                  </button>
+                  <button class="text-(--danger) border border-(--danger) rounded p-section flex justify-center items-center hover:bg-(--danger) hover:text-(--card-bg) transition duration-300 ease-in-out" (click)="deleteUser(user)">
+                    <i class="pi pi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+          @if (paginatedUsers.length === 0) {
+            <tr>
+              <td colspan="4" class="text-center p-20 text-(--placeholder)">
+                No se encontraron resultados.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <div class="flex flex-col sm:flex-row justify-between items-center p-10 bg-(--background) text-sm text-(--neutral-text)">
+        <p> Mostrando {{ showingRange.start }} a {{ showingRange.end }} de {{ filteredUsers.length }} registros </p>
+        <div class="flex justify-center items-center gap-2">
+          <button class="flex justify-center items-center p-section border border-(--placeholder) rounded hover:bg-(--neutral-bor)/30 transition disabled:opacity-40" [disabled]="currentPage === 1" (click)="prevPage()">
+            <i class="pi pi-angle-left"></i>
+          </button>
+          @for (page of totalPagesArray; track page) {
+          <button class="w-10 flex justify-center items-center p-section rounded border border-(--placeholder)"
+              [ngClass]="{
+                'bg-(--primary) text-(--neutral-text) border border-(--placeholder)': currentPage === page,
+                'hover:bg-(--primary)/20': currentPage !== page
+              }" (click)="goToPage(page)">
+            {{ page }}
+          </button>
+          }
+          <button class="flex justify-center items-center p-section border border-(--placeholder) rounded hover:bg-(--neutral-bor)/30 transition disabled:opacity-40" [disabled]="currentPage === totalPages" (click)="nextPage()">
+            <i class="pi pi-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

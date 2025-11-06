@@ -4,7 +4,7 @@ import { MainLayout } from './layouts/main-layout/main-layout';
 import { CommonModule } from '@angular/common';
 import { AlertsComponent } from './shared/components/alerts-component/alerts-component';
 import { Auth } from './core/services/auth';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 // import { SpinnerComponent } from './shared/components/spinner/spinner';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap, switchMap, take } from 'rxjs';
@@ -12,12 +12,12 @@ import { ModalComponent } from './shared/components/modal-component/modal-compon
 import { ModalOptions } from './core/interfaces/global/modal.interface';
 import { Modal } from './core/services/global/modal';
 
-const COMPONENTS = [AlertsComponent, MainLayout, ModalComponent];
+const COMPONENTS = [AlertsComponent, ModalComponent];
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, Login, ...COMPONENTS],
+  imports: [RouterOutlet, CommonModule, ...COMPONENTS],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -72,18 +72,19 @@ export class App {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.authService.initializeSession().subscribe({
-      next: (isAuthenticated) => {
+      next: () => {
         this.loading = false;
-        if (!isAuthenticated) {
-          this.router.navigate(['/auth/login']);
-        } else {
-          this.router.navigate(['/pages/users']);
-        }
+        // if (!isAuthenticated) {
+        //   this.router.navigate(['/auth/login']);
+        // } else {
+        //   this.router.navigate(['/pages/users']);
+        // }
       },
       error: (err) => {
         this.loading = false;
-        this.router.navigate(['/auth/login']);
+        // this.router.navigate(['/auth/login']);
       }
     });
   }

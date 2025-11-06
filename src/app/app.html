@@ -12,12 +12,11 @@
   (confirm)="handleConfirm()"
   (cancel)="handleCancel()"
   ></app-modal-component>
-@if(loading) {
-  <!-- <app-spinner-component></app-spinner-component> -->
+
+@if (loading) {
+  <div class="bg-white w-screen h-screen flex items-center justify-center">
+    <p class="text-(--neutral-text) text-poppins">Cargando...</p>
+  </div>
 } @else {
-  @if(authStatus()) {
-    <app-main-layout></app-main-layout>
-  } @else {
-    <app-login></app-login>
-  }
+  <router-outlet></router-outlet>
 }

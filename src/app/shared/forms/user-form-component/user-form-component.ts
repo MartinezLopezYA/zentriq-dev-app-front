@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output, ViewChild } from '@angular/core';
 import { UserForm } from '../../../core/services/global/user-form';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -70,7 +70,7 @@ export class UserFormComponent {
     userpassword: new FormControl<string | null>(null, [Validators.required, Validators.minLength(8)]),
     userphone: new FormControl<string | null>(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     identificationtypeuuid: new FormControl<string | null>('', [Validators.required]),
-    useridentificationnumber: new FormControl<number | null>(null, [Validators.required, Validators.minLength(10)]),
+    useridentificationnumber: new FormControl<number | null>(null, [Validators.required, Validators.minLength(6), Validators.maxLength(10)]),
     usergender: new FormControl<string | null>(''),
     professionuuid: new FormControl<string | null>(''),
     countryuuid: new FormControl<string | null>(''),
@@ -81,14 +81,14 @@ export class UserFormComponent {
     isActive: new FormControl<boolean>(true),
   });
 
-  constructor(
-    private userFormService: UserForm,
-    private userService: User,
-    private alertService: Alerts,
-    private identificationTypeService: IdentificationType,
-    private professionService: Profession,
-    private locationService: Locations
-  ) {}
+  private userFormService = inject(UserForm);
+  private userService = inject(User);
+  private alertService = inject(Alerts);
+  private identificationTypeService = inject(IdentificationType);
+  private professionService = inject(Profession);
+  private locationService = inject(Locations);
+
+  constructor() {}
 
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();

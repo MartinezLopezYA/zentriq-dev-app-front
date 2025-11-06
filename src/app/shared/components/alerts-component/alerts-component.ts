@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Alerts } from '../../../core/services/global/alerts';
 import { AlertInterface } from '../../../core/interfaces/global/alert.interface';
 import { CommonModule } from '@angular/common';
@@ -84,9 +84,9 @@ export class AlertsComponent implements OnInit {
 
   alerts: AlertInterface[] = [];
 
-  constructor(
-    private alertsService: Alerts
-  ) { }
+  private alertsService = inject(Alerts);
+
+  constructor() { }
 
   ngOnInit(): void {
     this.alertsService.alerts$.subscribe(alerts => {
