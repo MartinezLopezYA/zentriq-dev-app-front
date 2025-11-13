@@ -240,4 +240,35 @@ button:disabled {
 
 }
 
+input[type="checkbox"] {
+  width: 20px !important;
+  height: 20px !important;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--card-bg);
+  border: 2px solid var(--neutral-bor);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
 
+/* Hover */
+input[type="checkbox"]:hover {
+  border-color: var(--secondary);
+  background-color: var(--neutral-hv);
+}
+
+/* Estado activo */
+input[type="checkbox"]:checked {
+  background-color: var(--secondary);
+  border-color: var(--primary);
+}
+
+/* Icono de check personalizado */
+input[type="checkbox"]:checked::after {
+  color: var(--neutral-text-two);
+  position: absolute;
+  top: 0;
+  left: 3px;
+}

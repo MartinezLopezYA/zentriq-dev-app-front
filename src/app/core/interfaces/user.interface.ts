@@ -149,6 +149,15 @@ export interface UpdateUserInterface {
   dateOfBirth?: Date
 }
 
+export interface AssignRolesResponse {
+  useruuid: string,
+  firstname: string,
+  lastname: string,
+  username: string,
+  useremail: string,
+  userphone: string,
+  roles?: RoleInUsersInterface[]
+}
 
 export interface UpdateUserStatusInterface {
   useruuid: string,

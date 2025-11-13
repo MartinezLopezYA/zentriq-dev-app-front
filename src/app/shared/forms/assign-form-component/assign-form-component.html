@@ -1,0 +1,26 @@
+@if(isOpen) {
+  <div class="fixed inset-0 z-1500 flex items-center justify-end bg-(--background)/40 overflow-hidden">
+    <div class="relative w-2/4 max-h-[90vh] bg-(--card-bg) rounded-lg shadow-2xl p-20 transform transition-transform duration-500 ease-in-out" [class.translate-x-0]="entered" [class.translate-x-full]="!entered || closing">
+      <div class="flex justify-between items-center border-b border-(--primary) p-6 sticky top-0 bg-(--card-bg) z-10">
+        <h2 class="text-(--neutral-text) text-lg font-semibold">Asignación de Roles</h2>
+        <span class="text-(--neutral-text) cursor-pointer hover:text-(--primary) transition duration-300 ease-in-out" (click)="onCancel()">
+          <i class="pi pi-times"></i>
+        </span>
+      </div>
+      <div class="max-h-[calc(90vh-80px)] overflow-y-auto p-main-section scrollbar-class">
+        <div class="w-full flex flex-col justify-center">
+          @for(role of roles; track role.roleuuid) {
+            <div class="flex gap-2 items-center p-mini">
+              <input type="checkbox" name="role.rolename" [checked]="uuids.includes(role.roleuuid)" (click)="addRole(role.roleuuid)">
+              <p class="text-(--neutral-text)">{{ role.rolename }}</p>
+            </div>
+          }
+        </div>
+        <div class="w-full flex justify-end gap-4 mt-4">
+          <button type="button" class="btn secondary" (click)="onCancel()">Cancelar</button>
+          <button type="button" class="btn primary" (click)="assignRoelsToUser()" [disabled]="!uuids.length || loading">Asignar Roles</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

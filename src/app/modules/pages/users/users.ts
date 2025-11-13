@@ -10,8 +10,14 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { TagModule } from 'primeng/tag';
 import { FormsModule } from "@angular/forms";
+import { Modal } from '../../../core/services/global/modal';
+import { SpinnerComponent } from '../../../shared/components/spinner-component/spinner-component';
+import { AssignForm } from '../../../core/services/global/assign-form';
+import { AssignEnum } from '../../../core/enums/assign.enum';
+import { AssignFormComponent } from '../../../shared/forms/assign-form-component/assign-form-component';
+import { RoleInUsersInterface } from '../../../core/interfaces/role.interface';
 
-const COMPONENTS = [UserFormComponent];
+const COMPONENTS = [UserFormComponent, AssignFormComponent, SpinnerComponent];
 const PRIMENG_COMPONENTS = [TableModule, TooltipModule, TagModule];
 
 @Component({
@@ -25,6 +31,8 @@ const PRIMENG_COMPONENTS = [TableModule, TooltipModule, TagModule];
 export class Users {
 
   loading: boolean = false;
+  useruuid: string = '';
+
   users: GetUserInterface[] = [];
   paginatedUsers: GetUserInterface[] = [];
   filteredUsers: GetUserInterface[] = [];
@@ -37,13 +45,15 @@ export class Users {
   private userService = inject(User);
   private alertService = inject(Alerts);
   private userFormService = inject(UserForm);
+  private assignFormService = inject(AssignForm);
+  private modalService = inject(Modal);
 
   ngOnInit(): void {
-    this.getUsers();
+    this.loading = true;
+    this.loadUsers();
   }
 
-  getUsers() {
-    this.loading = true;
+  loadUsers() {
     this.userService.getAllUsers().subscribe({
       next: (users) => {
         this.users = users;
@@ -61,7 +71,7 @@ export class Users {
   addNewUser() {
     this.userFormService.openForm(
       () => {
-        this.getUsers();
+        this.loadUsers();
       },
       () => { }
     );
@@ -69,11 +79,9 @@ export class Users {
 
   onGlobalFilter() {
     const filterValue = this.filter.trim().toLowerCase();
-    console.log(filterValue);
     this.filteredUsers = this.users.filter((user) =>
       [user.firstname, user.lastname, user.useremail, user.useridentificationnumber].join(' ').toLowerCase().includes(filterValue)
     );
-    console.log(this.filteredUsers);
     this.currentPage = 1;
     this.updatePagination();
   }
@@ -118,12 +126,85 @@ export class Users {
     return { start, end };
   }
 
-  editUser(user: any) {
-    console.log('Editar usuario:', user);
+  onChangeStatus(user: GetUserInterface) {
+    this.useruuid = user.useruuid;
+    const status = user.isActive
+    const name = user.firstname + ' ' + user.lastname;
+    this.modalService.openModal(
+      {
+        title: 'Cambiar estado',
+        type: 'warning',
+        icon: 'pi pi-exclamation-triangle',
+        message: status ? `¿Está seguro de que quiere desactivar a ${name}?` : `¿Estás seguro de que quiere activar a ${name}?`,
+        confirmText: 'Confirmar',
+        cancelText: 'Cancelar',
+      },
+      () => {
+        this.changeStatus(this.useruuid);
+      },
+      () => { }
+    )
   }
 
-  deleteUser(user: any) {
-    console.log('Eliminar usuario:', user);
+  changeStatus(useruuid: string) {
+    this.loading = true;
+    this.userService.changeStatus(useruuid).subscribe({
+      next: () => {
+        this.alertService.showAlert('Usuario actualizado correctamente.', 'success');
+        this.useruuid = '';
+        this.loadUsers();
+      },
+      error: () => {
+        this.alertService.showAlert('No se pudo cambiar el estado del usuario.', 'error');
+      }
+    })
+  }
+
+  assignRolesToUser(useruuid: string, roles: RoleInUsersInterface[]) {
+    this.useruuid = useruuid;
+    this.assignFormService.openForm(
+      () => {
+        this.loadUsers();
+        this.useruuid = '';
+      },
+      () => {
+        this.useruuid = '';
+      },
+      { uuid: this.useruuid, type: AssignEnum.ROLES, roles: roles}
+    );
+  }
+
+  onRemoveUser(user: any) {
+    this.useruuid = user.useruuid;
+    const name = user.firstname + ' ' + user.lastname;
+    this.modalService.openModal(
+      {
+        title: 'Eliminar usuario',
+        type: 'danger',
+        icon: 'pi pi-question-circle',
+        message: `¿Está seguro de que quiere eliminar a ${name}?. No podra deshacer esta acción.`,
+        confirmText: 'Confirmar',
+        cancelText: 'Cancelar',
+      },
+      () => {
+        this.removeUser(this.useruuid);
+      },
+      () => { }
+    )
+  }
+
+  removeUser(useruuid: string) {
+    this.loading = true;
+    this.userService.removeUser(useruuid).subscribe({
+      next: () => {
+        this.alertService.showAlert('Usuario eliminado correctamente.', 'success');
+        this.useruuid = '';
+        this.loadUsers();
+      },
+      error: () => {
+        this.alertService.showAlert('No se pudo cambiar el estado del usuario.', 'error');
+      }
+    })
   }
 
 }

@@ -14,9 +14,7 @@
   ></app-modal-component>
 
 @if (loading) {
-  <div class="bg-white w-screen h-screen flex items-center justify-center">
-    <p class="text-(--neutral-text) text-poppins">Cargando...</p>
-  </div>
+  <app-spinner-component></app-spinner-component>
 } @else {
   <router-outlet></router-outlet>
 }

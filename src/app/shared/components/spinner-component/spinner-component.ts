@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <div class="w-full h-full">
-      <div class="text-(--neutral-text) fixed bottom-3 right-3 flex flex-col items-center justify-center gap-2">
+    <div class="fixed inset-0 z-1500 flex items-center justify-center backdrop-blur-sm bg-(--background)/30 overflow-hidden">
+      <div class="text-(--neutral-text) flex flex-col items-center justify-center gap-2">
         <i class="pi pi-spin pi-spinner"></i>
         <span class="text-poppins">Cargando...</span>
       </div>

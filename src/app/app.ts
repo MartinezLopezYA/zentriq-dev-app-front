@@ -11,8 +11,9 @@ import { filter, map, mergeMap, switchMap, take } from 'rxjs';
 import { ModalComponent } from './shared/components/modal-component/modal-component';
 import { ModalOptions } from './core/interfaces/global/modal.interface';
 import { Modal } from './core/services/global/modal';
+import { SpinnerComponent } from './shared/components/spinner-component/spinner-component';
 
-const COMPONENTS = [AlertsComponent, ModalComponent];
+const COMPONENTS = [AlertsComponent, ModalComponent, SpinnerComponent];
 
 @Component({
   selector: 'app-root',
@@ -76,15 +77,9 @@ export class App {
     this.authService.initializeSession().subscribe({
       next: () => {
         this.loading = false;
-        // if (!isAuthenticated) {
-        //   this.router.navigate(['/auth/login']);
-        // } else {
-        //   this.router.navigate(['/pages/users']);
-        // }
       },
       error: (err) => {
         this.loading = false;
-        // this.router.navigate(['/auth/login']);
       }
     });
   }

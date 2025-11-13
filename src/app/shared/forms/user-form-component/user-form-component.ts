@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, inject, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { UserForm } from '../../../core/services/global/user-form';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -88,7 +88,7 @@ export class UserFormComponent {
   private professionService = inject(Profession);
   private locationService = inject(Locations);
 
-  constructor() {}
+  constructor() { }
 
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
@@ -100,13 +100,15 @@ export class UserFormComponent {
 
 
   ngOnInit(): void {
-    this.getIdentificationsTypes();
-    this.getProfessionsByCategory();
-    this.getCountries();
     this.subscription = this.userFormService.form$.subscribe(({ onConfirm, onCancel }) => {
       this.onConfirmCallback = onConfirm;
       this.onCancelCallback = onCancel;
       this.onOpen();
+      if (this.isOpen) {
+        this.getIdentificationsTypes();
+        this.getProfessionsByCategory();
+        this.getCountries();
+      }
     });
   }
 
