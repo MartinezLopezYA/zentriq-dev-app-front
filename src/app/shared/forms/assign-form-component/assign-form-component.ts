@@ -3,7 +3,7 @@ import { Role } from '../../../core/services/role';
 import { Subscription } from 'rxjs';
 import { GetRolesInterface, RoleInUsersInterface } from '../../../core/interfaces/role.interface';
 import { Alerts } from '../../../core/services/global/alerts';
-import { AssignForm } from '../../../core/services/global/assign-form';
+import { AssignForm } from '../../../core/services/forms/assign-form';
 import { AssignEnum } from '../../../core/enums/assign.enum';
 import { User } from '../../../core/services/user';
 
@@ -40,7 +40,6 @@ export class AssignFormComponent {
   private onCancelCallback: () => void = () => { };
   private data: { uuid: string, type: AssignEnum, roles: RoleInUsersInterface[] } = { uuid: '', type: AssignEnum.ROLES, roles: [] };
 
-
   ngOnInit(): void {
     this.subscription = this.assignFormService.form$.subscribe(({ onConfirm, onCancel, data: { uuid, type, roles } }) => {
       this.onConfirmCallback = onConfirm;
@@ -72,8 +71,8 @@ export class AssignFormComponent {
     this.loading = true;
     this.roleService.getRolesActive().subscribe({
       next: (res: unknown) => {
-        this.roles = res as GetRolesInterface[];
-        console.log(this.roles)
+        const roles = res as GetRolesInterface[];
+        this.roles = roles.filter(role => role.rolecode !== 'SUPERADMIN');
         this.loading = false
       },
       error: (error: any) => {

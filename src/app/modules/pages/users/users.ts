@@ -4,26 +4,22 @@ import { Alerts } from '../../../core/services/global/alerts';
 import { GetUserInterface } from '../../../core/interfaces/user.interface';
 import { CommonModule } from '@angular/common';
 import { UserFormComponent } from '../../../shared/forms/user-form-component/user-form-component';
-import { UserForm } from '../../../core/services/global/user-form';
+import { UserForm } from '../../../core/services/forms/user-form';
 import { inject } from '@angular/core';
-import { TableModule } from 'primeng/table';
-import { TooltipModule } from 'primeng/tooltip';
-import { TagModule } from 'primeng/tag';
 import { FormsModule } from "@angular/forms";
-import { Modal } from '../../../core/services/global/modal';
+import { Modal } from '../../../core/services/components/modal';
 import { SpinnerComponent } from '../../../shared/components/spinner-component/spinner-component';
-import { AssignForm } from '../../../core/services/global/assign-form';
+import { AssignForm } from '../../../core/services/forms/assign-form';
 import { AssignEnum } from '../../../core/enums/assign.enum';
 import { AssignFormComponent } from '../../../shared/forms/assign-form-component/assign-form-component';
 import { RoleInUsersInterface } from '../../../core/interfaces/role.interface';
 
 const COMPONENTS = [UserFormComponent, AssignFormComponent, SpinnerComponent];
-const PRIMENG_COMPONENTS = [TableModule, TooltipModule, TagModule];
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, ...COMPONENTS, ...PRIMENG_COMPONENTS, FormsModule],
+  imports: [CommonModule, ...COMPONENTS, FormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './users.html',
   styleUrl: './users.scss'
@@ -56,7 +52,10 @@ export class Users {
   loadUsers() {
     this.userService.getAllUsers().subscribe({
       next: (users) => {
-        this.users = users;
+        this.users = users.filter(user =>
+          !user.roles?.some(role => role.rolecode === 'SUPERADMIN')
+        );
+
         this.filteredUsers = [...this.users];
         this.updatePagination();
         this.loading = false;
@@ -170,7 +169,7 @@ export class Users {
       () => {
         this.useruuid = '';
       },
-      { uuid: this.useruuid, type: AssignEnum.ROLES, roles: roles}
+      { uuid: this.useruuid, type: AssignEnum.ROLES, roles: roles }
     );
   }
 
@@ -181,7 +180,7 @@ export class Users {
       {
         title: 'Eliminar usuario',
         type: 'danger',
-        icon: 'pi pi-question-circle',
+        icon: 'pi pi-exclamation-circle',
         message: `¿Está seguro de que quiere eliminar a ${name}?. No podra deshacer esta acción.`,
         confirmText: 'Confirmar',
         cancelText: 'Cancelar',

@@ -8,48 +8,53 @@
   box-sizing: border-box;
 }
 
-// Light Theme
 :root {
   --primary: #5F1D95;
   --secondary: #7C4DFF;
-  --alert: #7C4DFF;
-  --info: #00C4D8;
-  --accent: #00DCF5;
-  --neutral-bor: #d5dae0;
-  --neutral-hv: #F1F5F9;
-  --neutral-text: #1E293B;
-  --neutral-text-two: #F8FAFC;
-  --neutral-bg: #F8FAFC;
-  --card-bg: #FFFFFF;
+
   --placeholder: #6B7280;
-  --danger: #EF4444;
-  --warning: #F59E0B;
   --success: #10B981;
+  --info: #00C4D8;
+  --warning: #F59E0B;
+  --danger: #EF4444;
   --background: #b9c1c7;
+  --alternative: #fff;
+  --neutral-text: #334155;
+
+  --card: #FFF;
+
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 
   --topbar-height: 70px;
   --body-height: calc(100vh - var(--topbar-height) - 8px);
+
+  --row-gap: 8px;
 }
 
 // Dark Theme
 [data-theme="dark"] {
   --primary: #8B5CF6;
   --secondary: #7C4DFF;
-  --alert: #7C4DFF;
-  --info: #06B6D4;
-  --accent: #06B6D4;
-  --neutral-bor: #334155;
-  --neutral-hv: #334155;
-  --neutral-text: #F8FAFC;
-  --neutral-text-two: #1E293B;
-  --neutral-bg: #1E293B;
-  --card-bg: #0F172A;
+
   --placeholder: #6B7280;
-  --danger: #EF4444;
-  --warning: #FBBF24;
   --success: #34D399;
+  --info: #06B6D4;
+  --warning: #FBBF24;
+  --danger: #EF4444;
   --background: #334155;
+  --neutral-text: #F1F5F9;
+  --card: #0F172A;
+
+  --slate-400: #64748b;
+  --slate-300: #334155;
+  --slate-200: #1e293b;
+  --slate-100: #0f172a;
+
   --slider: linear-gradient(180deg, #5F1D95 0%, #F8FAFC 50%, #5F1D95 100%);
 }
 
@@ -65,7 +70,12 @@ body {
   background-image: var(--slider);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
   font-weight: 600;
@@ -110,6 +120,10 @@ label {
   padding: 5px;
 }
 
+.p-8 {
+  padding: 8px;
+}
+
 .p-10 {
   padding: 10px;
 }
@@ -129,6 +143,14 @@ label {
 .mx-2 {
   margin-left: 4px;
   margin-right: 4px;
+}
+
+.px-8 {
+  padding: 0 8px;
+}
+
+.px-10 {
+  padding: 0 10px;
 }
 
 .p-mini-users {
@@ -179,8 +201,8 @@ button:disabled {
 }
 
 .active {
-  background-color: var(--neutral-bor);
-  color: var(--neutral-text);
+  background-color: var(--primary);
+  color: var(--alternative);
 }
 
 @keyframes waveAnimation {
@@ -232,10 +254,11 @@ button:disabled {
 }
 
 .scrollbar-class {
-  overflow: auto;
+  overflow-y: auto;
 
   &::-webkit-scrollbar {
     width: 8px;
+    display: hidden;
   }
 
 }
@@ -271,4 +294,14 @@ input[type="checkbox"]:checked::after {
   position: absolute;
   top: 0;
   left: 3px;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
 }

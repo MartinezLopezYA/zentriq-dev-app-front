@@ -1,14 +1,20 @@
-:host {
+.layout {
   background-color: var(--background);
   width: 100%;
+  height: 100vh;
   display: grid;
-  column-gap: 8px;
+  justify-content: center;
   grid-template-areas:
-    "topbar topbar topbar"
-    "sidebar-left content sidebar-right"
-    "footer footer footer";
-  grid-template-columns: minmax(60px, auto) 1fr minmax(60px, auto);
-  padding-bottom: 8px;
+    "sidebar-left topbar"
+    "sidebar-left content"
+    ;
+  grid-template-columns: minmax(auto, 250px) minmax(auto, 1440px);
+  grid-template-rows: var(--topbar-height) auto;
+  column-gap: var(--row-gap);
+}
+
+.layout.sidebar-closed {
+  grid-template-columns: 52px minmax(auto, 1440px);
 }
 
 .content {
@@ -16,6 +22,6 @@
   background-color: var(--card-bg);
   grid-area: content;
   height: var(--body-height);
-  padding: 8px;
+  padding: 0 8px;
 }
 

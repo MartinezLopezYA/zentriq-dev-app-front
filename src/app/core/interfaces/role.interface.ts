@@ -7,7 +7,13 @@ export interface RoleInUsersInterface {
 export interface GetRolesInterface {
   roleuuid: string,
   rolename: string,
-  roldedsc: string,
+  roledesc: string,
   rolecode: string,
   isActive: boolean
+}
+
+export interface CreateRoleInterface {
+  rolename: string,
+  roledesc: string,
+  rolecode: string
 }

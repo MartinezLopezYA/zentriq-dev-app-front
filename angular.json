@@ -35,8 +35,10 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/styles.scss",
-              "src/theme.scss"
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/preline/dist/index.js"
             ]
           },
           "configurations": {
@@ -95,8 +97,10 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/styles.scss",
-              "src/theme.scss"
+              "src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/preline/dist/index.js"
             ]
           }
         }

@@ -4,7 +4,7 @@ import { Theme } from '../../../core/services/global/theme';
 import { UserLoginResponseInterface } from '../../../core/interfaces/user.interface';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Modal } from '../../../core/services/global/modal';
+import { Modal } from '../../../core/services/components/modal';
 
 @Component({
   selector: 'app-sidebar-right',

@@ -1,16 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { Login } from './modules/auth/login/login';
-import { MainLayout } from './layouts/main-layout/main-layout';
 import { CommonModule } from '@angular/common';
 import { AlertsComponent } from './shared/components/alerts-component/alerts-component';
 import { Auth } from './core/services/auth';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
-// import { SpinnerComponent } from './shared/components/spinner/spinner';
 import { Title } from '@angular/platform-browser';
-import { filter, map, mergeMap, switchMap, take } from 'rxjs';
+import { filter, map, mergeMap } from 'rxjs';
 import { ModalComponent } from './shared/components/modal-component/modal-component';
 import { ModalOptions } from './core/interfaces/global/modal.interface';
-import { Modal } from './core/services/global/modal';
+import { Modal } from './core/services/components/modal';
 import { SpinnerComponent } from './shared/components/spinner-component/spinner-component';
 
 const COMPONENTS = [AlertsComponent, ModalComponent, SpinnerComponent];

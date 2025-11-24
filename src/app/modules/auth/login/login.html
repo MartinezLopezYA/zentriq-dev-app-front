@@ -35,7 +35,7 @@
             <label for="email" class="text-(--neutral-text) font-bold text-1xl">Usuario</label>
             <input type="email" id="email" name="email" formControlName="useremail"
               placeholder="Ingrese su correo electrónico"
-              class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true"/>
+              class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true"/>
           </div>
           <div class="flex flex-col gap-1 w-full">
             <div class="relative flex justify-between items-center w-full">
@@ -45,7 +45,7 @@
             <div class="relative">
               <input [type]="showPassword ? 'text' : 'password'" id="userpassword" name="userpassword" formControlName="userpassword"
               placeholder="Ingrese su contraseña"
-              class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required=""/>
+              class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required=""/>
               <span class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer opacity-70" (click)="togglePasswordVisibility()">
                 @if(!showPassword) {
                   <i class="pi pi-eye text-(--placeholder)"></i>
@@ -56,13 +56,13 @@
               </div>
           </div>
         </div>
-        <p-button type="submit" styleClass="w-full bg-(--primary)! text-white! rounded hover:bg-(--secondary)! transition duration-300 ease-in-out border-(--primary)! hover:border-(--secondary)!" [disabled]="loginForm.invalid || loading">
+        <button type="submit" class="w-full bg-(--primary) text-(--alternative) rounded-md hover:bg-(--secondary) transition duration-300 ease-in-out border-(--primary) hover:border-(--secondary)" [disabled]="loginForm.invalid || loading">
           @if(loading) {
             <i class="pi pi-spin pi-spinner mr-2"></i> Iniciando sesión...
           }@else {
             Iniciar sesión
           }
-        </p-button>
+        </button>
     </form>
     </div>
     <p class="hidden text-(--neutral-text) lg:flex text-center">En Zentriq desarrollamos soluciones digitales modernas para

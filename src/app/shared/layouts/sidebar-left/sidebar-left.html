@@ -1,12 +1,21 @@
-<div class="h-full bg-(--card-bg) rounded-lg w-13 flex flex-col justify-center items-center gap-2">
-  @for(item of menuItems; track item.name) {
-    <div class="relative group">
-      <a routerLink="{{item.routerLink}}" routerLinkActive="active" class="flex justify-center items-center text-(--primary) text-lg hover:bg-(--neutral-bor) hover:text-(--neutral-text) transition duration-300 ease-in-out p-10 rounded">
-        <i class="pi {{item.icon}} text-sm"></i>
-      </a>
-      <div class="z-3000 absolute left-full top-1/2 -translate-y-1/2 ml-2 whitespace-nowrap bg-(--background) text-(--neutral-text) mx-2 text-sm p-mini rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
-        {{ item.name }}
-      </div>
+<div [ngClass]="isOpenMenu ? 'w-[250px]' : 'w-[52px]'" class="flex flex-col items-center gap-2 bg-(--card) rounded-lg h-full transition-all duration-300 ease-in-out">
+  <div class="flex justify-center items-center w-full h-[54px] p-10 border-b border-(--slate-300)">
+    <div [ngClass]="isOpenMenu ? 'w-[250px]' : 'w-[52px]'" class="w-full h-full flex justify-between items-center gap-2 px-4 transition-all duration-300 ease-in-out">
+        <img class="w-auto h-8 hidden md:flex transition-all duration-300 ease-in-out" [ngClass]="!isOpenMenu ? 'flex' : 'hidden'" [src]="theme === 'dark' ? 'images/Logo Completo Dark.png' : 'images/Logo Completo Light.png'" alt="Logo del sistema" />
+        <img class="w-auto h-8 flex md:hidden transition-all duration-300 ease-in-out" [ngClass]="!isOpenMenu ? 'flex' : 'hidden'" [src]="theme === 'dark' ? 'icons/Logo Isotipo Dark.png' : 'icons/Logo Isotipo Light.png'" alt="Logo del sistema" />
     </div>
-  }
+    <button type="button" class="flex items-center justify-center h-8 w-8 md:h-9 md:w-9 p-8 fixed bottom-4 right-4 md:static rounded hover:bg-(--slate-100) text-(--secondary) cursor-pointer" (click)="toggleMenu()">
+      <i class="pi pi-bars text-xs md:text-lg"></i>
+    </button>
+  </div>
+  <div class="h-full rounded-lg w-full flex flex-col items-center gap-1 scrollbar-class text-(--primary) transition-all duration-300 ease-in-out px-10" [ngClass]="!isOpenMenu ? 'items-center' : 'items-start'">
+    @for(item of menuItems; track item.name) {
+      <div class="w-full h-9">
+        <a routerLink="{{item.routerLink}}" routerLinkActive="active" class="h-9 min-w-9 text-sm flex items-center gap-3 rounded hover:bg-(--slate-200) text-(--neutral-text) hover:text-(--primary) cursor-pointer text-poppins" [ngClass]="!isOpenMenu ? 'justify-center' : 'px-10'">
+          <i class="pi {{item.icon}} text-sm"></i>
+          <span [ngClass]="!isOpenMenu ? 'hidden' : 'flex'"> {{ item.name }} </span>
+        </a>
+      </div>
+    }
+  </div>
 </div>

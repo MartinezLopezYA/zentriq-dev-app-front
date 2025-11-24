@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Sidebar } from '../../../core/services/components/sidebar';
+import { Theme } from '../../../core/services/global/theme';
 
 @Component({
   selector: 'app-sidebar-left',
@@ -11,9 +13,19 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SidebarLeft {
 
+  isOpenMenu: boolean = false;
+  enteredMenu: boolean = false;
+  theme: 'light' | 'dark' = 'light';
   menuItems: any[] = [];
 
+  private sidebarService = inject(Sidebar);
+  private themeService = inject(Theme);
+
   constructor() {
+
+    this.themeService.theme$.subscribe((theme: 'light' | 'dark') => {
+      this.theme = theme;
+    })
 
     this.menuItems = [
       {
@@ -35,6 +47,18 @@ export class SidebarLeft {
 
   }
 
+  ngOnInit(): void {
+    this.sidebarService.sidebarVisible$.subscribe((isVisible) => {
+      this.isOpenMenu = isVisible;
+    });
 
+    if (window.innerWidth <= 768) {
+      this.sidebarService.closeSidebar();
+    }
+  }
+
+  toggleMenu() {
+    this.sidebarService.toggleSidebar();
+  }
 
 }

@@ -1,0 +1,46 @@
+@if(isOpen) {
+  <div class="fixed inset-0 z-1500 flex items-center justify-end bg-(--background)/40 overflow-hidden">
+    <div class="relative w-2/4 max-h-[90vh] bg-(--card-bg) rounded-lg shadow-2xl p-20 transform transition-transform duration-500 ease-in-out" [class.translate-x-0]="entered" [class.translate-x-full]="!entered || closing">
+      <div class="flex justify-between items-center border-b border-(--primary) p-6 sticky top-0 bg-(--card-bg) z-10">
+        <h2 class="text-(--neutral-text) text-lg font-semibold">Creación de Rol</h2>
+        <span class="text-(--neutral-text) cursor-pointer hover:text-(--primary) transition duration-300 ease-in-out" (click)="onCancel()">
+          <i class="pi pi-times"></i>
+        </span>
+      </div>
+      <div class="max-h-[calc(90vh-80px)] overflow-y-auto p-main-section scrollbar-class">
+        <form class="w-full flex flex-col gap-8 justify-center " [formGroup]="roleForm" (ngSubmit)="addNewRole()">
+          <div class="w-full grid grid-cols-2 gap-4">
+            <div class="flex flex-col gap-1">
+              <label for="firstname" class="text-(--neutral-text) font-bold text-sm">Nombres <span class="text-(--danger)"> * </span> </label>
+              <input type="text" id="firstname" name="firstname" formControlName="firstname" placeholder="e.g. Juan Carlos" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="lastname" class="text-(--neutral-text) font-bold text-sm">Apellidos <span class="text-(--danger)"> * </span> </label>
+              <input type="text" id="lastname" name="lastname" formControlName="lastname" placeholder="e.g. Perez Lopez" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="username" class="text-(--neutral-text) font-bold text-sm">Nombre de Usuario <span class="text-(--danger)"> * </span> </label>
+              <input type="text" id="username" name="username" formControlName="username" placeholder="e.g. JUANPEREZ001" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
+            </div>
+            <div class="flex flex-col gap-1">
+              <label for="useremail" class="text-(--neutral-text) font-bold text-sm">Correo electrónico <span class="text-(--danger)"> * </span> </label>
+              <input type="email" id="useremail" name="useremail" formControlName="useremail" placeholder="e.g. juanperez@example.com" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="100" />
+            </div>
+            <div class="flex flex-col gap-1 w-full">
+              <label for="userpassword" class="text-(--neutral-text) font-bold text-sm">Contraseña <span class="text-(--danger)"> * </span> </label>
+              <input type="password" id="userpassword" name="userpassword" formControlName="userpassword" placeholder="e.g. JUANperez*001" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" minlength="8" />
+            </div>
+            <div class="flex flex-col gap-1 w-full">
+              <label for="userphone" class="text-(--neutral-text) font-bold text-sm">Telefono <span class="text-(--danger)"> * </span> </label>
+              <input type="text" id="userphone" name="userphone" formControlName="userphone" placeholder="e.g. 3121112222" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="10" />
+            </div>
+          </div>
+          <div class="w-full flex justify-end gap-4 mt-4">
+            <button type="button" class="btn secondary" (click)="onCancel()">Cancelar</button>
+            <button type="submit" class="btn primary" [disabled]="roleForm.invalid || loading">Crear Rol</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+}

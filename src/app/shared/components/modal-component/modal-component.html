@@ -1,13 +1,13 @@
 @if(isOpen) {
   <div class="fixed inset-0 z-2000 flex items-center justify-center bg-(--background)/40">
-    <div class="relative w-[90%]] md:w-[400px] bg-(--card-bg) rounded-lg shadow-2xl overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <div class="relative w-[90%]] md:w-[400px] bg-(--card) rounded-lg shadow-2xl overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
       <div class="absolute inset-0 z-0 pointer-events-none">
         <svg class="w-[450px] h-full" viewBox="0 0 500 200" preserveAspectRatio="none">
           <defs>
             <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="var(--primary)" />
-              <stop offset="45%" stop-color="var(--card-bg)" />
-              <stop offset="55%" stop-color="var(--card-bg)" />
+              <stop offset="45%" stop-color="var(--card)" />
+              <stop offset="55%" stop-color="var(--card)" />
               <stop offset="100%" stop-color="var(--primary)" />
             </linearGradient>
           </defs>
@@ -25,8 +25,8 @@
           <p class="text-poppins text-(--neutral-text)">{{ message }}</p>
         </div>
         <div class="flex justify-center gap-3">
-          <button class="btn secondary" (click)="onCancel()">{{ cancelText }}</button>
-          <button class="btn primary" (click)="onConfirm()" autofocus #confirmBtn>{{ confirmText }}</button>
+          <button class="bg-(--card) text-(--primary) rounded-md hover:bg-(--primary) transition duration-300 ease-in-out border border-(--slate-400) hover:border-(--primary) hover:text-(--alternative)" (click)="onCancel()">{{ cancelText }}</button>
+          <button class="bg-(--primary) text-(--alternative) rounded-md hover:bg-(--secondary) transition duration-300 ease-in-out border-(--primary) hover:border-(--secondary)" (click)="onConfirm()" autofocus #confirmBtn>{{ confirmText }}</button>
         </div>
       </div>
     </div>

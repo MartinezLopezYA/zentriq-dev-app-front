@@ -2,9 +2,9 @@
   display: block;
   grid-area: sidebar-left;
   position: fixed;
-  top: var(--topbar-height);
   left: 8px;
-  height: var(--body-height);
+  height: 100vh;
+  padding: 8px 0;
 }
 
 .container {

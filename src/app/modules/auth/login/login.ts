@@ -7,16 +7,13 @@ import { Alerts } from '../../../core/services/global/alerts';
 import { Router } from '@angular/router';
 import { User } from '../../../core/services/user';
 import { map, of, switchMap, tap } from 'rxjs';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 
 const COMPONENTS = [ThemeComponet];
-const COMPONENTS_PRIMENG = [ButtonModule, InputTextModule];
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ...COMPONENTS, ...COMPONENTS_PRIMENG],
+  imports: [FormsModule, ReactiveFormsModule, ...COMPONENTS],
   templateUrl: './login.html',
 })
 export class Login {

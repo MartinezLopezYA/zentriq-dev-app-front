@@ -1,0 +1,63 @@
+<app-role-form-component></app-role-form-component>
+<app-assign-form-component></app-assign-form-component>
+@if(loading) {
+<app-spinner-component></app-spinner-component>
+}@else {
+<section class="w-full h-full p-mini flex flex-col gap-3">
+  <div class="w-full h-(--topbar-heights) flex justify-between items-center gap-3 border-b border-(--primary) p-mini">
+    <h2 class="text-(--neutral-text) font-bold text-lg flex-1">Gestión de Roles</h2>
+    <div class="flex relative">
+      <i class="pi pi-search absolute top-1/2 -translate-y-1/2 right-0 p-10 text-(--placeholder)"></i>
+      <!-- <input type="filter" id="filter" name="filter" placeholder="Buscar usuario..." class="w-[200px] text-(--placeholder) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text) pr-8" [(ngModel)]="filter"  (input)="onGlobalFilter()"/> -->
+    </div>
+    <button type="button" class="w-fit bg-(--primary) text-white rounded hover:bg-(--secondary) transition duration-300 ease-in-out flex items-center gap-3" (click)="addNewRole()">
+      <i class="pi pi-plus"></i>
+      <span>Nuevo</span>
+    </button>
+  </div>
+  <div class="w-full h-full flex flex-wrap gap-3 overflow-auto scrollbar-class">
+    @for (role of roles; track role.roleuuid) {
+    <div class="w-1/4 h-fit bg-(--card-bg) border border-(--neutral-bor) rounded-lg shadow-lg p-10">
+      <div class="w-full h-full flex flex-col gap-3">
+        <h3 class="text-(--neutral-text) border-b border-(--neutral-text)">{{role.rolename}}</h3>
+        <p class="text-(--neutral-text)"> {{ role.roledesc }} </p>
+        <div class="w-full flex justify-end gap-2">
+          <div class="relative group">
+            <button class="flex justify-center items-center text-(--primary) text-lg border border-(--neutral-bor) hover:bg-(--neutral-bor) hover:text-(--neutral-text) transition duration-300 ease-in-out p-10 rounded">
+              <i class="pi" [ngClass]="!role.isActive ? 'pi-verified' : 'pi-ban'"></i>
+            </button>
+            <div class="z-3000 absolute left-full top-[103%] -translate-x-[87%] whitespace-nowrap bg-(--background) text-(--neutral-text) mx-2 text-sm p-mini rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+              {{ role.isActive ? 'Inactivar' : 'Activar'}}
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="flex justify-center items-center text-(--primary) text-lg border border-(--neutral-bor) hover:bg-(--neutral-bor) hover:text-(--neutral-text) transition duration-300 ease-in-out p-10 rounded">
+              <i class="pi pi-pencil"></i>
+            </button>
+            <div class="z-3000 absolute left-full top-[103%] -translate-x-[98%] whitespace-nowrap bg-(--background) text-(--neutral-text) mx-2 text-sm p-mini rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+              Editar
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="flex justify-center items-center text-(--primary) text-lg border border-(--neutral-bor) hover:bg-(--neutral-bor) hover:text-(--neutral-text) transition duration-300 ease-in-out p-10 rounded">
+              <i class="pi pi-trash"></i>
+            </button>
+            <div class="z-3000 absolute left-full top-[103%] -translate-x-[90%] ml-2 whitespace-nowrap bg-(--background) text-(--neutral-text) mx-2 text-sm p-mini rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+              Eliminar
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="flex justify-center items-center text-(--primary) text-lg border border-(--neutral-bor) hover:bg-(--neutral-bor) hover:text-(--neutral-text) transition duration-300 ease-in-out p-10 rounded">
+              <i class="pi pi-book"></i>
+            </button>
+            <div class="z-3000 absolute left-full top-[103%] -translate-x-[70%] ml-2 whitespace-nowrap bg-(--background) text-(--neutral-text) mx-2 text-sm p-mini rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+              Asignar permisos
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+}

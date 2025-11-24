@@ -7,14 +7,14 @@ import { Theme } from '../../../core/services/global/theme';
   template: `
       <div class="flex gap-2">
         @if(theme === 'dark') {
-          <i class="pi pi-inbox text-white text-lg"></i>
+          <i class="pi pi-inbox text-(--alternative) text-lg"></i>
           <button type="button" (click)="toggleTheme()" class="custom-theme">
-            <i class="pi pi-sun text-white text-lg"></i>
+            <i class="pi pi-sun text-(--alternative) text-lg"></i>
           </button>
         }@else {
-          <i class="pi pi-inbox text-(--neutral-text) lg:text-(--neutral-text-two) text-lg"></i>
+          <i class="pi pi-inbox text-(--alternative) lg:text-text-(--alternative) text-lg"></i>
           <button type="button" (click)="toggleTheme()" class="custom-theme">
-            <i class="pi pi-moon text-(--neutral-text) lg:text-(--neutral-text-two) text-lg"></i>
+            <i class="pi pi-moon text-(--alternative) lg:text-text-(--alternative) text-lg"></i>
           </button>
         }
       </div>

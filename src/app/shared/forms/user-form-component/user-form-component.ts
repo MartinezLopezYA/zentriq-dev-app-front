@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
-import { UserForm } from '../../../core/services/global/user-form';
+import { UserForm } from '../../../core/services/forms/user-form';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../../core/services/user';
@@ -124,8 +124,6 @@ export class UserFormComponent {
     setTimeout(() => {
       this.entered = true;
     }, 10);
-
-
   }
 
   onClose() {

@@ -1,7 +1,7 @@
-<app-topbar></app-topbar>
-<app-sidebar-left></app-sidebar-left>
-<app-sidebar-right></app-sidebar-right>
-<!-- <app-footer></app-footer> -->
-<div class="content rounded-lg">
-  <router-outlet></router-outlet>
+<div class="layout" [class.sidebar-closed]="!isOpenMenu" >
+  <app-topbar></app-topbar>
+  <app-sidebar-left></app-sidebar-left>
+  <div class="content rounded-lg">
+    <router-outlet></router-outlet>
+  </div>
 </div>
