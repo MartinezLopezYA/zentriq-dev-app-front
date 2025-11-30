@@ -167,7 +167,7 @@ label {
 
 input {
   padding: .5rem .8rem;
-  background-color: var(--neutral-bor);
+  background-color: var(--slate-100);
   font-family: 'Poppins', sans-serif;
   font-size: .8rem;
   font-weight: 400;
@@ -240,7 +240,7 @@ button:disabled {
   }
 
   &.secondary {
-    background-color: var(--neutral-bg);
+    background-color: var(--card);
     color: var(--secondary);
     border: 1px solid var(--secondary);
 
@@ -268,8 +268,8 @@ input[type="checkbox"] {
   height: 20px !important;
   appearance: none;
   -webkit-appearance: none;
-  background-color: var(--card-bg);
-  border: 2px solid var(--neutral-bor);
+  background-color: var(--card);
+  border: 2px solid var(--slate-300);
   border-radius: 6px;
   cursor: pointer;
   position: relative;
@@ -279,7 +279,7 @@ input[type="checkbox"] {
 /* Hover */
 input[type="checkbox"]:hover {
   border-color: var(--secondary);
-  background-color: var(--neutral-hv);
+  background-color: var(--slate-300);
 }
 
 /* Estado activo */
@@ -290,7 +290,7 @@ input[type="checkbox"]:checked {
 
 /* Icono de check personalizado */
 input[type="checkbox"]:checked::after {
-  color: var(--neutral-text-two);
+  color: var(--slate-400);
   position: absolute;
   top: 0;
   left: 3px;

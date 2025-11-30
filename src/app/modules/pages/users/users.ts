@@ -159,7 +159,7 @@ export class Users {
     })
   }
 
-  assignRolesToUser(useruuid: string, roles: RoleInUsersInterface[]) {
+  assignRolesToUser(useruuid: string, options: RoleInUsersInterface[]) {
     this.useruuid = useruuid;
     this.assignFormService.openForm(
       () => {
@@ -169,7 +169,7 @@ export class Users {
       () => {
         this.useruuid = '';
       },
-      { uuid: this.useruuid, type: AssignEnum.ROLES, roles: roles }
+      { uuid: this.useruuid, type: AssignEnum.ROLES, options: options }
     );
   }
 

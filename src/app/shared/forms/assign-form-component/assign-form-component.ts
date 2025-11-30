@@ -1,14 +1,17 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { Role } from '../../../core/services/role';
 import { Subscription } from 'rxjs';
-import { GetRolesInterface, RoleInUsersInterface } from '../../../core/interfaces/role.interface';
+import { GetRolesInterface, GetRolesWithPermissionsInterface, RoleInUsersInterface } from '../../../core/interfaces/role.interface';
 import { Alerts } from '../../../core/services/global/alerts';
 import { AssignForm } from '../../../core/services/forms/assign-form';
 import { AssignEnum } from '../../../core/enums/assign.enum';
 import { User } from '../../../core/services/user';
+import { GetPermissionssInterface } from '../../../core/interfaces/permission.interface';
+import { Permission } from '../../../core/services/permission';
 
 @Component({
   selector: 'app-assign-form-component',
+  standalone: true,
   imports: [],
   templateUrl: './assign-form-component.html',
   styleUrl: './assign-form-component.scss',
@@ -22,9 +25,11 @@ export class AssignFormComponent {
   loading: boolean = false;
   useruuid: string = '';
   roles: GetRolesInterface[] = [];
+  permissions: GetPermissionssInterface[] = [];
   uuids: string[] = [];
 
   private roleService = inject(Role);
+  private permissionService = inject(Permission);
   private userService = inject(User);
   private alertService = inject(Alerts);
   private assignFormService = inject(AssignForm);
@@ -38,24 +43,19 @@ export class AssignFormComponent {
 
   private onConfirmCallback: () => void = () => { };
   private onCancelCallback: () => void = () => { };
-  private data: { uuid: string, type: AssignEnum, roles: RoleInUsersInterface[] } = { uuid: '', type: AssignEnum.ROLES, roles: [] };
+  data: { uuid: string, type: AssignEnum, options: any } = { uuid: '', type: AssignEnum.ROLES, options: [] };
 
   ngOnInit(): void {
-    this.subscription = this.assignFormService.form$.subscribe(({ onConfirm, onCancel, data: { uuid, type, roles } }) => {
+    this.subscription = this.assignFormService.form$.subscribe(({ onConfirm, onCancel, data: { uuid, type, options } }) => {
       this.onConfirmCallback = onConfirm;
       this.onCancelCallback = onCancel;
-      this.data = { uuid, type, roles };
+      this.data = { uuid, type, options };
       this.onOpen();
       if (this.isOpen) {
         this.useruuid = this.data.uuid;
-        if (this.data.type === AssignEnum.ROLES) {
-          this.loadRoles();
-        } else {
-          this.alertService.showAlert('Opción no disponible.', 'error')
-        }
-
-        if (roles.length > 0) {
-          roles.forEach((role: RoleInUsersInterface) => {
+        this.loadOptions();
+        if (options.length > 0) {
+          options.forEach((role: RoleInUsersInterface) => {
             this.uuids.push(role.roleuuid);
           })
         }
@@ -67,24 +67,43 @@ export class AssignFormComponent {
     this.subscription.unsubscribe();
   }
 
-  loadRoles() {
+  loadOptions() {
     this.loading = true;
-    this.roleService.getRolesActive().subscribe({
-      next: (res: unknown) => {
-        const roles = res as GetRolesInterface[];
-        this.roles = roles.filter(role => role.rolecode !== 'SUPERADMIN');
-        this.loading = false
-      },
-      error: (error: any) => {
-        if (error.error.errorCode === 'NFA_ROLE_ERROR') {
-          this.alertService.showAlert('No hay roles activos disponibles.', 'error');
+    if (this.data.type === AssignEnum.ROLES) {
+      this.roleService.getRolesActive().subscribe({
+        next: (res: unknown) => {
+          const roles = res as GetRolesInterface[];
+          this.roles = roles.filter(role => role.rolecode !== 'SUPERADMIN');
           this.loading = false
-          return;
+        },
+        error: (error: any) => {
+          this.alertService.showAlert(error.error.message, 'error');
+          this.loading = false
         }
-        this.alertService.showAlert('No se pudieron cargar los roles.', 'error');
-        this.loading = false
-      }
-    })
+      })
+    } else {
+      this.permissionService.getPermissions().subscribe({
+        next: (res: unknown) => {
+          this.roleService.getRoleWithPermissions(this.data.uuid).subscribe({
+            next: (roleRes: unknown) => {
+              const role = roleRes as GetRolesWithPermissionsInterface;
+              const assignedPermissions = role.permissions.map(permission => permission.permissionuuid);
+              this.uuids = assignedPermissions;
+            },
+            error: (error: any) => {
+              this.alertService.showAlert(error.error.message, 'error');
+            }
+          });
+          const permissions = res as GetPermissionssInterface[];
+          this.permissions = permissions;
+          this.loading = false
+        },
+        error: (error: any) => {
+          this.alertService.showAlert(error.error.message, 'error');
+          this.loading = false
+        }
+      })
+    }
   }
 
   onOpen() {
@@ -115,28 +134,51 @@ export class AssignFormComponent {
 
   assignRoelsToUser() {
     this.loading = true;
-    this.userService.assignRoles(this.useruuid, this.uuids).subscribe({
-      next: () => {
-        this.alertService.showAlert('Roles asignados correctamente.', 'success');
-        this.onConfirmCallback();
-        this.onClose();
-      },
-      error: (err) => {
-        this.alertService.showAlert('No se pudieron asignar los roles.', 'error');
-        this.loading = false;
-      }
-    });
+    if (this.data.type === 'ROLES') {
+
+      this.userService.assignRoles(this.useruuid, this.uuids).subscribe({
+        next: () => {
+          this.alertService.showAlert('Roles asignados correctamente.', 'success');
+          this.onConfirmCallback();
+          this.onClose();
+        },
+        error: (err) => {
+          this.alertService.showAlert(err.error.message, 'error');
+          this.loading = false;
+        }
+      });
+    } else {
+      this.roleService.assignPermissions(this.data.uuid, this.uuids).subscribe({
+        next: () => {
+          this.alertService.showAlert('Permisos asignados correctamente.', 'success');
+          this.onConfirmCallback();
+          this.onClose();
+        },
+        error: (err) => {
+          this.alertService.showAlert(err.error.message, 'error');
+          this.loading = false;
+        }
+      });
+    }
   }
 
   onCancel() {
     this.onClose();
   }
 
-  addRole(uuid: string) {
+  addOptions(uuid: string) {
     if (this.uuids.includes(uuid)) {
       this.uuids = this.uuids.filter(item => item !== uuid);
     } else {
       this.uuids.push(uuid);
+    }
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onEscape(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.onClose();
     }
   }
 }

@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="fixed top-3 right-3 flex flex-col gap-0.5 z-2000">
       @for (alert of alerts; track alert.id) {
-        <div class="alert border {{ alert.type === 'success' ? 'border-(--success)' : alert.type === 'error' ? 'border-(--danger)' : alert.type === 'info' ? 'border-(--info)' : 'border-(--warning)' }}" [ngClass]="alert.type">
-          <i class="pi text-lg"
+        <div class="alert border {{ alert.type === 'success' ? 'bg-(--success)/80 border-(--success)/80 text-(--neutral-text)' : alert.type === 'error' ? 'border-(--danger)/80 bg-(--danger)/80 text-(--neutral-text)' : alert.type === 'info' ? 'border-(--info)/80 bg-(--info)/80 text-(--neutral-text)' : 'border-(--warning)/80 bg-(--warning)/80 text-(--neutral-text)' }}" [ngClass]="alert.type">
+          <i class="pi text-lg text-(--neutral-text)"
             [ngClass]="{
               'pi-check-circle': alert.type === 'success',
               'pi-times-circle': alert.type === 'error',
@@ -19,13 +19,9 @@ import { CommonModule } from '@angular/common';
               'pi-exclamation-triangle': alert.type === 'warning'
             }">
           </i>
-          <div class="w-px h-[30px] border border-(--white)"></div>
+          <div class="w-px h-[30px] border border-(--neutral-text)"></div>
           <div class="flex flex-col">
-            <h6 class="{{ alert.type === 'success' ? 'text-(--success)'
-              : alert.type === 'error' ? 'text-(--danger)'
-              : alert.type === 'info' ? 'text-(--info)'
-              : 'text-(--warning)'
-            }}">
+            <h6 class="text-(--neutral-text)">
               {{
                 alert.type === 'success' ? 'Exitoso'
                 : alert.type === 'error' ? 'Error'
@@ -51,24 +47,6 @@ import { CommonModule } from '@angular/common';
       min-width: 200px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       animation: fadeInOut 3s ease-in-out forwards;
-    }
-
-    .success {
-      background-color: var(--card-bg);
-      color: var(--success);
-    }
-    .error {
-      background-color: var(--card-bg);
-      color: var(--danger);
-
-    }
-    .info {
-      background-color: var(--card-bg);
-      color: var(--info);
-    }
-    .warning {
-      background-color: var(--card-bg);
-      color: var(--warning);
     }
 
     @keyframes fadeInOut {

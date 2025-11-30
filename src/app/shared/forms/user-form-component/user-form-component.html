@@ -1,7 +1,7 @@
 @if(isOpen) {
   <div class="fixed inset-0 z-1500 flex items-center justify-end bg-(--background)/40 overflow-hidden">
-    <div class="relative w-2/4 max-h-[90vh] bg-(--card-bg) rounded-lg shadow-2xl p-20 transform transition-transform duration-500 ease-in-out" [class.translate-x-0]="entered" [class.translate-x-full]="!entered || closing">
-      <div class="flex justify-between items-center border-b border-(--primary) p-6 sticky top-0 bg-(--card-bg) z-10">
+    <div class="relative w-2/4 max-h-[90vh] bg-(--card) rounded-lg shadow-2xl p-20 transform transition-transform duration-500 ease-in-out" [class.translate-x-0]="entered" [class.translate-x-full]="!entered || closing">
+      <div class="flex justify-between items-center border-b border-(--primary) p-6 sticky top-0 bg-(--card) z-10">
         <h2 class="text-(--neutral-text) text-lg font-semibold">Creación de Usuario</h2>
         <span class="text-(--neutral-text) cursor-pointer hover:text-(--primary) transition duration-300 ease-in-out" (click)="onCancel()">
           <i class="pi pi-times"></i>
@@ -12,38 +12,38 @@
           <div class="w-full grid grid-cols-2 gap-4">
             <div class="flex flex-col gap-1">
               <label for="firstname" class="text-(--neutral-text) font-bold text-sm">Nombres <span class="text-(--danger)"> * </span> </label>
-              <input type="text" id="firstname" name="firstname" formControlName="firstname" placeholder="e.g. Juan Carlos" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
+              <input type="text" id="firstname" name="firstname" formControlName="firstname" placeholder="e.g. Juan Carlos" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
             </div>
             <div class="flex flex-col gap-1">
               <label for="lastname" class="text-(--neutral-text) font-bold text-sm">Apellidos <span class="text-(--danger)"> * </span> </label>
-              <input type="text" id="lastname" name="lastname" formControlName="lastname" placeholder="e.g. Perez Lopez" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
+              <input type="text" id="lastname" name="lastname" formControlName="lastname" placeholder="e.g. Perez Lopez" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
             </div>
             <div class="flex flex-col gap-1">
               <label for="username" class="text-(--neutral-text) font-bold text-sm">Nombre de Usuario <span class="text-(--danger)"> * </span> </label>
-              <input type="text" id="username" name="username" formControlName="username" placeholder="e.g. JUANPEREZ001" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
+              <input type="text" id="username" name="username" formControlName="username" placeholder="e.g. JUANPEREZ001" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="50" />
             </div>
             <div class="flex flex-col gap-1">
               <label for="useremail" class="text-(--neutral-text) font-bold text-sm">Correo electrónico <span class="text-(--danger)"> * </span> </label>
-              <input type="email" id="useremail" name="useremail" formControlName="useremail" placeholder="e.g. juanperez@example.com" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="100" />
+              <input type="email" id="useremail" name="useremail" formControlName="useremail" placeholder="e.g. juanperez@example.com" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="100" />
             </div>
             <div class="flex flex-col gap-1 w-full">
               <label for="userpassword" class="text-(--neutral-text) font-bold text-sm">Contraseña <span class="text-(--danger)"> * </span> </label>
-              <input type="password" id="userpassword" name="userpassword" formControlName="userpassword" placeholder="e.g. JUANperez*001" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" minlength="8" />
+              <input type="password" id="userpassword" name="userpassword" formControlName="userpassword" placeholder="e.g. JUANperez*001" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" minlength="8" />
             </div>
             <div class="flex flex-col gap-1 w-full">
               <label for="userphone" class="text-(--neutral-text) font-bold text-sm">Telefono <span class="text-(--danger)"> * </span> </label>
-              <input type="text" id="userphone" name="userphone" formControlName="userphone" placeholder="e.g. 3121112222" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="10" />
+              <input type="text" id="userphone" name="userphone" formControlName="userphone" placeholder="e.g. 3121112222" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" required="true" maxlength="10" />
             </div>
             <div class="relative w-full">
               <label for="identificationtypeuuid" class="text-(--neutral-text) font-bold text-sm">Tipo de Identificación <span class="text-(--danger)"> * </span> </label>
-              <button type="button" (click)="toggleDropdown()" class="w-full border-2 border-(--neutral-bor) text-(--placeholder) rounded p-input bg-(--neutral-bor) flex justify-between items-center">
+              <button type="button" (click)="toggleDropdown()" class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)">
                 {{ selectedIdentification?.identificationtypename || 'Seleccionar...' }}
                 <i class="pi pi-chevron-down text-(--placeholder) transition-transform duration-300" [class.rotate-180]="dropdownOpenIdentifiaction"></i>
               </button>
               @if(dropdownOpenIdentifiaction) {
-              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card-bg) border border-(--neutral-bor) rounded shadow-lg scrollbar-class">
+              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card) border border-(--slate-300) rounded shadow-lg scrollbar-class">
                 @for(type of identificationTypes; track type.identificationtypeuuid) {
-                <div (click)="selectIdentification(type)" class="p-input text-(--neutral-text) hover:bg-(--neutral-bor) hover:text-(--neutral-text) cursor-pointer transition text-poppins text-sm">
+                <div (click)="selectIdentification(type)" class="p-input text-(--neutral-text) hover:bg-(--slate-300) hover:text-(--neutral-text) cursor-pointer transition text-poppins text-sm">
                   {{ type.identificationtypename }}
                 </div>
                 }
@@ -52,19 +52,19 @@
             </div>
             <div class="flex flex-col gap-1 w-full">
               <label for="useridentificationnumber" class="text-(--neutral-text) font-bold text-sm">Identificación <span class="text-(--danger)"> * </span> </label>
-              <input type="text" inputmode="numeric" maxlength="10" minlength="6" id="useridentificationnumber" name="useridentificationnumber" formControlName="useridentificationnumber" placeholder="e.g. 391818182" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" (input)="onInputNumberOnly($event)" required="true" />
+              <input type="text" inputmode="numeric" maxlength="10" minlength="6" id="useridentificationnumber" name="useridentificationnumber" formControlName="useridentificationnumber" placeholder="e.g. 391818182" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" (input)="onInputNumberOnly($event)" required="true" />
             </div>
             <div class="relative w-full">
               <label for="usergender" class="text-(--neutral-text) font-bold text-sm">Género </label>
-              <button type="button" (click)="toggleGenderDropdown()" class="w-full border-2 border-(--neutral-bor) text-(--placeholder) rounded p-input bg-(--neutral-bor) flex justify-between items-center transition duration-300 ease-in-out hover:ring-2 hover:ring-(--secondary) focus:ring-2 focus:ring-(--primary)">
+              <button type="button" (click)="toggleGenderDropdown()" class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)">
                 {{ selectedGender?.genderlabel || 'Seleccionar...' }}
                 <i class="pi pi-chevron-down text-(--placeholder) transition-transform duration-300" [class.rotate-180]="genderDropdownOpen"></i>
               </button>
               @if (genderDropdownOpen) {
               <div
-                class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card-bg) border border-(--neutral-bor) rounded shadow-lg scrollbar-class animate-fadeIn">
+                class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card) border border-(--slate-300) rounded shadow-lg scrollbar-class animate-fadeIn">
                 @for (gender of genderoptions; track gender.gendervalue) {
-                <div (click)="selectGender(gender)" class="p-input text-sm text-(--neutral-text) hover:bg-(--neutral-bor) hover:text-(--neutral-text) cursor-pointer transition text-poppins">
+                <div (click)="selectGender(gender)" class="p-input text-sm text-(--neutral-text) hover:bg-(--slate-300) hover:text-(--neutral-text) cursor-pointer transition text-poppins">
                   {{ gender.genderlabel }}
                 </div>
                 }
@@ -73,14 +73,14 @@
             </div>
             <div class="relative w-full">
               <label for="professionuuid" class="text-(--neutral-text) font-bold text-sm">Profesión</label>
-              <button type="button" (click)="toggleProfessionDropdown()" class="w-full border-2 border-(--neutral-bor) text-(--placeholder) rounded p-input bg-(--neutral-bor) flex justify-between items-center transition duration-300 ease-in-out hover:ring-2 hover:ring-(--secondary) focus:ring-2 focus:ring-(--primary)">
+              <button type="button" (click)="toggleProfessionDropdown()" class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)">
                 {{ selectedProfession?.professionname || 'Seleccionar...' }}
                 <i class="pi pi-chevron-down text-(--placeholder) transition-transform duration-300" [class.rotate-180]="professionDropdownOpen"></i>
               </button>
               @if (professionDropdownOpen) {
-              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card-bg) border border-(--neutral-bor) rounded shadow-lg scrollbar-class animate-fadeIn">
+              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card) border border-(--slate-300) rounded shadow-lg scrollbar-class animate-fadeIn">
                 @for (profession of professions; track profession.professionuuid) {
-                <div (click)="selectProfession(profession)" class="p-input text-sm text-(--neutral-text) hover:bg-(--neutral-bor) hover:text-(--neutral-text) cursor-pointer transition text-poppins">
+                <div (click)="selectProfession(profession)" class="p-input text-sm text-(--neutral-text) hover:bg-(--slate-300) hover:text-(--neutral-text) cursor-pointer transition text-poppins">
                   {{ profession.professionname }}
                 </div>
                 }
@@ -89,14 +89,14 @@
             </div>
             <div class="relative w-full">
               <label for="countryuuid" class="text-(--neutral-text) font-bold text-sm"> País </label>
-              <button type="button" (click)="toggleCountryDropdown()" class="w-full border-2 border-(--neutral-bor) text-(--placeholder) rounded p-input bg-(--neutral-bor) flex justify-between items-center transition duration-300 ease-in-out hover:ring-2 hover:ring-(--secondary) focus:ring-2 focus:ring-(--primary)">
+              <button type="button" (click)="toggleCountryDropdown()" class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)">
                 {{ selectedCountry?.countryname || 'Seleccionar...' }}
                 <i class="pi pi-chevron-down text-(--placeholder) transition-transform duration-300" [class.rotate-180]="countryDropdownOpen"></i>
               </button>
               @if (countryDropdownOpen) {
-              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card-bg) border border-(--neutral-bor) rounded shadow-lg scrollbar-class animate-fadeIn">
+              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card) border border-(--slate-300) rounded shadow-lg scrollbar-class animate-fadeIn">
                 @for (country of countries; track country.countryuuid) {
-                <div (click)="selectCountry(country)" class="p-input text-sm text-(--neutral-text) hover:bg-(--neutral-bor) cursor-pointer transition text-poppins">
+                <div (click)="selectCountry(country)" class="p-input text-sm text-(--neutral-text) hover:bg-(--slate-300) cursor-pointer transition text-poppins">
                   {{ country.countryname }}
                 </div>
                 }
@@ -105,14 +105,14 @@
             </div>
             <div class="relative w-full">
               <label for="deptouuid" class="text-(--neutral-text) font-bold text-sm"> Departamento </label>
-              <button type="button" (click)="toggleDepartmentDropdown()" class="w-full border-2 border-(--neutral-bor) text-(--placeholder) rounded p-input bg-(--neutral-bor) flex justify-between items-center transition duration-300 ease-in-out hover:ring-2 hover:ring-(--secondary) focus:ring-2 focus:ring-(--primary)" [disabled]="departments.length === 0">
+              <button type="button" (click)="toggleDepartmentDropdown()" class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" [disabled]="departments.length === 0">
                 {{ selectedDepartment?.departmentname || 'Seleccionar...' }}
                 <i class="pi pi-chevron-down text-(--placeholder) transition-transform duration-300" [class.rotate-180]="departmentDropdownOpen"></i>
               </button>
               @if (departmentDropdownOpen) {
-              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card-bg) border border-(--neutral-bor) rounded shadow-lg scrollbar-class animate-fadeIn">
+              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card) border border-(--slate-300) rounded shadow-lg scrollbar-class animate-fadeIn">
                 @for (department of departments; track department.departmentuuid) {
-                <div (click)="selectDepartment(department)" class="p-input text-sm text-(--neutral-text) hover:bg-(--neutral-bor) cursor-pointer transition text-poppins">
+                <div (click)="selectDepartment(department)" class="p-input text-sm text-(--neutral-text) hover:bg-(--slate-300) cursor-pointer transition text-poppins">
                   {{ department.departmentname }}
                 </div>
                 }
@@ -121,14 +121,14 @@
             </div>
             <div class="relative w-full">
               <label for="cityuuid" class="text-(--neutral-text) font-bold text-sm"> Ciudad </label>
-              <button type="button" (click)="toggleCityDropdown()" class="w-full border-2 border-(--neutral-bor) text-(--placeholder) rounded p-input bg-(--neutral-bor) flex justify-between items-center transition duration-300 ease-in-out hover:ring-2 hover:ring-(--secondary) focus:ring-2 focus:ring-(--primary)" [disabled]="cities.length === 0">
+              <button type="button" (click)="toggleCityDropdown()" class="w-full border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" [disabled]="cities.length === 0">
                 {{ selectedCity?.cityname || 'Seleccionar...' }}
                 <i class="pi pi-chevron-down text-(--placeholder) transition-transform duration-300" [class.rotate-180]="cityDropdownOpen"></i>
               </button>
               @if (cityDropdownOpen) {
-              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card-bg) border border-(--neutral-bor) rounded shadow-lg scrollbar-class animate-fadeIn">
+              <div class="absolute z-50 mt-1 w-full max-h-48 overflow-auto bg-(--card) border border-(--slate-300) rounded shadow-lg scrollbar-class animate-fadeIn">
                 @for (city of cities; track city.cityuuid) {
-                <div (click)="selectCity(city)" class="p-input text-sm text-(--neutral-text) hover:bg-(--neutral-bor) cursor-pointer transition text-poppins">
+                <div (click)="selectCity(city)" class="p-input text-sm text-(--neutral-text) hover:bg-(--slate-300) cursor-pointer transition text-poppins">
                   {{ city.cityname }}
                 </div>
                 }
@@ -138,12 +138,12 @@
 
             <div class="flex flex-col gap-1">
               <label for="useraddress" class="text-(--neutral-text) font-bold text-sm">Dirección </label>
-              <input type="text" id="useraddress" name="useraddress" formControlName="useraddress" placeholder="e.g. CRA 15 # 18-09" class="w-full border text-(--placeholder) border-(--neutral-bor) rounded transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" maxlength="50" />
+              <input type="text" id="useraddress" name="useraddress" formControlName="useraddress" placeholder="e.g. CRA 15 # 18-09" class="border text-(--slate-400) border-(--slate-300) rounded-md transition duration-300 ease-in-out hover:outline-none hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)" maxlength="50" />
             </div>
 
             <div class="relative w-full">
               <label for="dateOfBirth" class="text-(--neutral-text) font-bold text-sm">Fecha de Nacimiento</label>
-              <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="w-full border-2 border-(--neutral-bor) text-(--placeholder) rounded p-2 bg-(--neutral-bor) transition duration-300 ease-in-out hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)"/>
+              <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth" class="w-full border-2 border-(--slate-300) text-(--placeholder) rounded p-2 bg-(--slate-300) transition duration-300 ease-in-out hover:ring-2 hover:ring-(--secondary) focus:outline-none focus:ring-2 focus:ring-(--primary) focus:text-(--neutral-text)"/>
             </div>
           </div>
           <div class="w-full flex justify-end gap-4 mt-4">
